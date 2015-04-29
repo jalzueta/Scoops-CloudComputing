@@ -12,6 +12,8 @@
 		59C54CCC1AF1772900A8CFF3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59C54CCB1AF1772900A8CFF3 /* Images.xcassets */; };
 		59C54CCF1AF1772900A8CFF3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59C54CCD1AF1772900A8CFF3 /* LaunchScreen.xib */; };
 		59C54CDB1AF1772900A8CFF3 /* ScoopsFillingappsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C54CDA1AF1772900A8CFF3 /* ScoopsFillingappsTests.m */; };
+		59C54CE51AF17CB300A8CFF3 /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C54CE41AF17CB300A8CFF3 /* WindowsAzureMobileServices.framework */; };
+		59C54CE91AF17CF300A8CFF3 /* Scoop.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C54CE81AF17CF300A8CFF3 /* Scoop.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,9 @@
 		59C54CD41AF1772900A8CFF3 /* ScoopsFillingappsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScoopsFillingappsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		59C54CD91AF1772900A8CFF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59C54CDA1AF1772900A8CFF3 /* ScoopsFillingappsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScoopsFillingappsTests.m; sourceTree = "<group>"; };
+		59C54CE41AF17CB300A8CFF3 /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
+		59C54CE71AF17CF300A8CFF3 /* Scoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scoop.h; sourceTree = "<group>"; };
+		59C54CE81AF17CF300A8CFF3 /* Scoop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scoop.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59C54CE51AF17CB300A8CFF3 /* WindowsAzureMobileServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +67,7 @@
 				59C54CC31AF1772900A8CFF3 /* ScoopsFillingapps */,
 				59C54CD71AF1772900A8CFF3 /* ScoopsFillingappsTests */,
 				59C54CC21AF1772900A8CFF3 /* Products */,
+				59C54CE41AF17CB300A8CFF3 /* WindowsAzureMobileServices.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +88,7 @@
 				59C54CCB1AF1772900A8CFF3 /* Images.xcassets */,
 				59C54CCD1AF1772900A8CFF3 /* LaunchScreen.xib */,
 				59C54CC41AF1772900A8CFF3 /* Supporting Files */,
+				59C54CE61AF17CD800A8CFF3 /* Model */,
 			);
 			path = ScoopsFillingapps;
 			sourceTree = "<group>";
@@ -109,6 +117,15 @@
 				59C54CD91AF1772900A8CFF3 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		59C54CE61AF17CD800A8CFF3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				59C54CE71AF17CF300A8CFF3 /* Scoop.h */,
+				59C54CE81AF17CF300A8CFF3 /* Scoop.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59C54CE91AF17CF300A8CFF3 /* Scoop.m in Sources */,
 				59C54CCA1AF1772900A8CFF3 /* AppDelegate.m in Sources */,
 				59C54CC71AF1772900A8CFF3 /* main.m in Sources */,
 			);
@@ -325,6 +343,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = ScoopsFillingapps/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -335,6 +357,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = ScoopsFillingapps/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
