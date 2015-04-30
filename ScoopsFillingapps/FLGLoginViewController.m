@@ -90,6 +90,7 @@
                     completion:^(id userInfo, NSHTTPURLResponse *response, NSError *error) {
                         
                         //tenemos info extra del usuario
+                        self.userInfo = userInfo;
                         NSLog(@"%@", userInfo);
                         //            self.profilePicture = [NSURL URLWithString:result[@"picture"][@"data"][@"url"]];
                         [self launchWritterModeWithUser: userInfo];
