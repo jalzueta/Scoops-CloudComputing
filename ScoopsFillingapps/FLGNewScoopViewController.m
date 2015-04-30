@@ -7,9 +7,11 @@
 //
 
 #import "FLGNewScoopViewController.h"
+#import "FLGConstants.h"
+
 @import CoreLocation;
 
-@interface FLGNewScoopViewController ()<CLLocationManagerDelegate>
+@interface FLGNewScoopViewController ()<CLLocationManagerDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) id userInfo;
 @property (nonatomic) CGRect oldRect;
@@ -17,6 +19,9 @@
 @property (strong, nonatomic) NSString *authorID;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLLocation *location;
+
+@property (strong, nonatomic) UIActionSheet *photoMenu;
+@property (strong, nonatomic) NSData *photoData;
 
 @end
 
@@ -97,6 +102,7 @@
                         options:0
                      animations:^{
                          self.scoopTextView.frame = newRect;
+                         self.photoView.hidden = YES;
                      } completion:^(BOOL finished) {
                          //
                      }];
@@ -113,6 +119,7 @@
                         options:0
                      animations:^{
                          self.scoopTextView.frame = self.oldRect;
+                         self.photoView.hidden = NO;
                      } completion:^(BOOL finished) {
                          //
                      }];
@@ -133,6 +140,19 @@
 }
 
 - (IBAction)takePhoto:(id)sender {
+    
+    if (!self.photoMenu) {
+        self.photoMenu = [[UIActionSheet alloc] initWithTitle:@"Select Photo Source:"
+                                                     delegate:self
+                                            cancelButtonTitle:@"Cancel"
+                                       destructiveButtonTitle:nil
+                                            otherButtonTitles:
+                          @"Camera",
+                          @"Roll",
+                          @"Album",
+                          nil];
+    }
+    [self.photoMenu showInView:[UIApplication sharedApplication].keyWindow];
 }
 
 
@@ -141,6 +161,9 @@
 - (void) configScreenAppearance{
     self.scoopTextView.layer.borderWidth = 0.5;
     self.scoopTextView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.scoopTextView.layer.cornerRadius = 10;
+    self.photoView.layer.cornerRadius = 10;
+    self.photoView.layer.masksToBounds = YES;
 }
 
 - (void) configAuthor{
@@ -246,6 +269,91 @@
     self.locationManager = nil;
     
     self.location = [locations lastObject];
+}
+
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
+
+    switch (buttonIndex) {
+        case 0:
+            [self takePicture:CAMERA];
+            break;
+        case 1:
+            [self takePicture:ROLL];
+            break;
+        case 2:
+            [self takePicture:ALBUM];
+            break;
+        default:
+            break;
+    }
+}
+
+    
+#pragma mark - Image
+- (void) takePicture: (NSString *) type{
+    // Creamos un UIImagePickerController
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    
+    // -------------- Lo configuramos ---------------
+    if ([type isEqualToString:CAMERA]) {
+        // Compruebo si el dispositivo tiene camara
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            // Uso la camara
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        }else{
+            // Tiro de la galeria
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        }
+    } else if ([type isEqualToString:ROLL]){
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        picker.modalPresentationStyle = UIModalPresentationFormSheet;
+    } else{
+        picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+        picker.modalPresentationStyle = UIModalPresentationFormSheet;
+    }
+    
+    // Asigno el delegado
+    picker.delegate = self;
+    
+    // Customizo la transicion del controlador modal
+    // picker.modalPresentationStyle -> forma en la que se va a presentar
+    //    picker.modalPresentationStyle = UIModalPresentationFormSheet;
+    
+    // picker.modalTransitionStyle -> animacion que se va a usar al hacer la transicion
+    // ojo si se usa "UIModalTransitionStylePartialCurl" -> No se va a llamar a viewWillDisappear ni a viewWillAppear cuando se produzca la transicion
+    picker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    
+    // Lo muetro de forma modal
+    [self presentViewController:picker
+                       animated:YES
+                     completion:^{
+                         // Esto se va a ejecutar cuando termine la animacion que muestra al picker
+                     }];
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void) imagePickerController:(UIImagePickerController *)picker
+ didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    
+    // ¡OJO! Pico de memoria asegurado, especialmente en dispositivos "antiguos" (iPhone 4S, iPhone 5), por culpa de la UIImage que se recibe en el diccionario
+    // Sacamos la UIImage del diccionario
+    UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    // La guardo en el modelo
+    self.photoData = UIImageJPEGRepresentation(img, 1);
+    if (self.photoData) {
+        self.photoView.image = img;
+    }
+    
+    // Quito de enmedio al picker
+    [self dismissViewControllerAnimated:YES
+                             completion:^{
+                                 // Se ejecutará cuando se haya ocultado del todo
+                             }];
+    
+    // Usar self.presentingViewController si no existe un protocolo de delegado. No hace falta montar uno solo para ocultar la modal.
 }
 
 @end
