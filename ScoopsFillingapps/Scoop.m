@@ -17,7 +17,6 @@
 @property (nonatomic, strong) NSData *image;
 @property (nonatomic, strong) NSDate *dateCreated;
 
-
 @end
 
 

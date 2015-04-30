@@ -14,6 +14,13 @@
 		59C54CDB1AF1772900A8CFF3 /* ScoopsFillingappsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C54CDA1AF1772900A8CFF3 /* ScoopsFillingappsTests.m */; };
 		59C54CE51AF17CB300A8CFF3 /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59C54CE41AF17CB300A8CFF3 /* WindowsAzureMobileServices.framework */; };
 		59C54CE91AF17CF300A8CFF3 /* Scoop.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C54CE81AF17CF300A8CFF3 /* Scoop.m */; };
+		59C54CED1AF17ECE00A8CFF3 /* FLGLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C54CEB1AF17ECE00A8CFF3 /* FLGLoginViewController.m */; };
+		59C54CEE1AF17ECE00A8CFF3 /* FLGLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59C54CEC1AF17ECE00A8CFF3 /* FLGLoginViewController.xib */; };
+		59C54CF41AF1FEE300A8CFF3 /* FLGNewScoopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C54CF21AF1FEE300A8CFF3 /* FLGNewScoopViewController.m */; };
+		59C54CF51AF1FEE300A8CFF3 /* FLGNewScoopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59C54CF31AF1FEE300A8CFF3 /* FLGNewScoopViewController.xib */; };
+		59C54CFA1AF2028200A8CFF3 /* user_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 59C54CF71AF2028200A8CFF3 /* user_icon.png */; };
+		59C54CFB1AF2028200A8CFF3 /* user_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59C54CF81AF2028200A8CFF3 /* user_icon@2x.png */; };
+		59C54CFC1AF2028200A8CFF3 /* user_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59C54CF91AF2028200A8CFF3 /* user_icon@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +47,16 @@
 		59C54CE41AF17CB300A8CFF3 /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
 		59C54CE71AF17CF300A8CFF3 /* Scoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scoop.h; sourceTree = "<group>"; };
 		59C54CE81AF17CF300A8CFF3 /* Scoop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scoop.m; sourceTree = "<group>"; };
+		59C54CEA1AF17ECE00A8CFF3 /* FLGLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGLoginViewController.h; sourceTree = "<group>"; };
+		59C54CEB1AF17ECE00A8CFF3 /* FLGLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLGLoginViewController.m; sourceTree = "<group>"; };
+		59C54CEC1AF17ECE00A8CFF3 /* FLGLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLGLoginViewController.xib; sourceTree = "<group>"; };
+		59C54CF01AF1819200A8CFF3 /* SharedKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedKeys.h; sourceTree = "<group>"; };
+		59C54CF11AF1FEE300A8CFF3 /* FLGNewScoopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGNewScoopViewController.h; sourceTree = "<group>"; };
+		59C54CF21AF1FEE300A8CFF3 /* FLGNewScoopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLGNewScoopViewController.m; sourceTree = "<group>"; };
+		59C54CF31AF1FEE300A8CFF3 /* FLGNewScoopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLGNewScoopViewController.xib; sourceTree = "<group>"; };
+		59C54CF71AF2028200A8CFF3 /* user_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_icon.png; sourceTree = "<group>"; };
+		59C54CF81AF2028200A8CFF3 /* user_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_icon@2x.png"; sourceTree = "<group>"; };
+		59C54CF91AF2028200A8CFF3 /* user_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_icon@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,10 +102,13 @@
 			children = (
 				59C54CC81AF1772900A8CFF3 /* AppDelegate.h */,
 				59C54CC91AF1772900A8CFF3 /* AppDelegate.m */,
+				59C54CF01AF1819200A8CFF3 /* SharedKeys.h */,
 				59C54CCB1AF1772900A8CFF3 /* Images.xcassets */,
 				59C54CCD1AF1772900A8CFF3 /* LaunchScreen.xib */,
 				59C54CC41AF1772900A8CFF3 /* Supporting Files */,
 				59C54CE61AF17CD800A8CFF3 /* Model */,
+				59C54CEF1AF1806600A8CFF3 /* Controllers */,
+				59C54CF61AF2026700A8CFF3 /* Resources */,
 			);
 			path = ScoopsFillingapps;
 			sourceTree = "<group>";
@@ -126,6 +146,29 @@
 				59C54CE81AF17CF300A8CFF3 /* Scoop.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		59C54CEF1AF1806600A8CFF3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				59C54CEA1AF17ECE00A8CFF3 /* FLGLoginViewController.h */,
+				59C54CEB1AF17ECE00A8CFF3 /* FLGLoginViewController.m */,
+				59C54CEC1AF17ECE00A8CFF3 /* FLGLoginViewController.xib */,
+				59C54CF11AF1FEE300A8CFF3 /* FLGNewScoopViewController.h */,
+				59C54CF21AF1FEE300A8CFF3 /* FLGNewScoopViewController.m */,
+				59C54CF31AF1FEE300A8CFF3 /* FLGNewScoopViewController.xib */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		59C54CF61AF2026700A8CFF3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				59C54CF71AF2028200A8CFF3 /* user_icon.png */,
+				59C54CF81AF2028200A8CFF3 /* user_icon@2x.png */,
+				59C54CF91AF2028200A8CFF3 /* user_icon@3x.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,8 +251,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59C54CF51AF1FEE300A8CFF3 /* FLGNewScoopViewController.xib in Resources */,
 				59C54CCF1AF1772900A8CFF3 /* LaunchScreen.xib in Resources */,
+				59C54CEE1AF17ECE00A8CFF3 /* FLGLoginViewController.xib in Resources */,
 				59C54CCC1AF1772900A8CFF3 /* Images.xcassets in Resources */,
+				59C54CFC1AF2028200A8CFF3 /* user_icon@3x.png in Resources */,
+				59C54CFB1AF2028200A8CFF3 /* user_icon@2x.png in Resources */,
+				59C54CFA1AF2028200A8CFF3 /* user_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,8 +275,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59C54CED1AF17ECE00A8CFF3 /* FLGLoginViewController.m in Sources */,
 				59C54CE91AF17CF300A8CFF3 /* Scoop.m in Sources */,
 				59C54CCA1AF1772900A8CFF3 /* AppDelegate.m in Sources */,
+				59C54CF41AF1FEE300A8CFF3 /* FLGNewScoopViewController.m in Sources */,
 				59C54CC71AF1772900A8CFF3 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
