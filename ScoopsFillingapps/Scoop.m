@@ -26,7 +26,8 @@
           photo:(NSData *) aPhoto
              text:(NSString *) aText
           author:(NSString *) anAuthor
-             coord:(CLLocationCoordinate2D) aCoord{
+               coord:(CLLocationCoordinate2D) aCoord
+              status:(NSString *) aStatus{
     
     if (self = [super init]) {
         _title = aTitle;
@@ -35,6 +36,7 @@
         _coors = aCoord;
         _image = aPhoto;
         _dateCreated = [NSDate date];
+        _status = aStatus;
     }
     return self;
 }

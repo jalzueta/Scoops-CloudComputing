@@ -8,6 +8,7 @@
 
 #import "FLGNewScoopViewController.h"
 #import "FLGConstants.h"
+#import "FLGAllScoopCollectionViewController.h"
 
 @import CoreLocation;
 
@@ -137,6 +138,13 @@
 }
 
 - (IBAction)myScoops:(id)sender {
+}
+
+- (IBAction)allScoops:(id)sender{
+    FLGAllScoopCollectionViewController *allScoopsVC = [[FLGAllScoopCollectionViewController alloc] init];
+    [self presentViewController:allScoopsVC
+                       animated:YES
+                     completion:nil];
 }
 
 - (IBAction)takePhoto:(id)sender {

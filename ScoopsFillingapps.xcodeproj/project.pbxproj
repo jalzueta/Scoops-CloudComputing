@@ -28,6 +28,10 @@
 		59C54D0C1AF2317A00A8CFF3 /* roll@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59C54D061AF2317A00A8CFF3 /* roll@2x.png */; };
 		59C54D0D1AF2317A00A8CFF3 /* roll@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59C54D071AF2317A00A8CFF3 /* roll@3x.png */; };
 		59C54D0F1AF2329B00A8CFF3 /* no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 59C54D0E1AF2329B00A8CFF3 /* no_image.png */; };
+		59C54D151AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C54D131AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.m */; };
+		59C54D161AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59C54D141AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.xib */; };
+		59C54D1A1AF27EE800A8CFF3 /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C54D181AF27EE800A8CFF3 /* NewsTableViewCell.m */; };
+		59C54D1B1AF27EE800A8CFF3 /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59C54D191AF27EE800A8CFF3 /* NewsTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +76,12 @@
 		59C54D071AF2317A00A8CFF3 /* roll@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roll@3x.png"; sourceTree = "<group>"; };
 		59C54D0E1AF2329B00A8CFF3 /* no_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_image.png; sourceTree = "<group>"; };
 		59C54D111AF233DF00A8CFF3 /* FLGConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLGConstants.h; sourceTree = "<group>"; };
+		59C54D121AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGAllScoopCollectionViewController.h; sourceTree = "<group>"; };
+		59C54D131AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLGAllScoopCollectionViewController.m; sourceTree = "<group>"; };
+		59C54D141AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLGAllScoopCollectionViewController.xib; sourceTree = "<group>"; };
+		59C54D171AF27EE800A8CFF3 /* NewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTableViewCell.h; sourceTree = "<group>"; };
+		59C54D181AF27EE800A8CFF3 /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTableViewCell.m; sourceTree = "<group>"; };
+		59C54D191AF27EE800A8CFF3 /* NewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,12 +177,16 @@
 		59C54CEF1AF1806600A8CFF3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				59C54D1C1AF27EEC00A8CFF3 /* Cells */,
 				59C54CEA1AF17ECE00A8CFF3 /* FLGLoginViewController.h */,
 				59C54CEB1AF17ECE00A8CFF3 /* FLGLoginViewController.m */,
 				59C54CEC1AF17ECE00A8CFF3 /* FLGLoginViewController.xib */,
 				59C54CF11AF1FEE300A8CFF3 /* FLGNewScoopViewController.h */,
 				59C54CF21AF1FEE300A8CFF3 /* FLGNewScoopViewController.m */,
 				59C54CF31AF1FEE300A8CFF3 /* FLGNewScoopViewController.xib */,
+				59C54D121AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.h */,
+				59C54D131AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.m */,
+				59C54D141AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -192,6 +206,16 @@
 				59C54CF91AF2028200A8CFF3 /* user_icon@3x.png */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		59C54D1C1AF27EEC00A8CFF3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				59C54D171AF27EE800A8CFF3 /* NewsTableViewCell.h */,
+				59C54D181AF27EE800A8CFF3 /* NewsTableViewCell.m */,
+				59C54D191AF27EE800A8CFF3 /* NewsTableViewCell.xib */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,8 +305,10 @@
 				59C54D0F1AF2329B00A8CFF3 /* no_image.png in Resources */,
 				59C54D081AF2317A00A8CFF3 /* album.png in Resources */,
 				59C54CEE1AF17ECE00A8CFF3 /* FLGLoginViewController.xib in Resources */,
+				59C54D161AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.xib in Resources */,
 				59C54CCC1AF1772900A8CFF3 /* Images.xcassets in Resources */,
 				59C54CFC1AF2028200A8CFF3 /* user_icon@3x.png in Resources */,
+				59C54D1B1AF27EE800A8CFF3 /* NewsTableViewCell.xib in Resources */,
 				59C54D0D1AF2317A00A8CFF3 /* roll@3x.png in Resources */,
 				59C54D0B1AF2317A00A8CFF3 /* roll.png in Resources */,
 				59C54CFB1AF2028200A8CFF3 /* user_icon@2x.png in Resources */,
@@ -308,8 +334,10 @@
 				59C54CED1AF17ECE00A8CFF3 /* FLGLoginViewController.m in Sources */,
 				59C54CE91AF17CF300A8CFF3 /* Scoop.m in Sources */,
 				59C54CCA1AF1772900A8CFF3 /* AppDelegate.m in Sources */,
+				59C54D1A1AF27EE800A8CFF3 /* NewsTableViewCell.m in Sources */,
 				59C54CF41AF1FEE300A8CFF3 /* FLGNewScoopViewController.m in Sources */,
 				59C54CC71AF1772900A8CFF3 /* main.m in Sources */,
+				59C54D151AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

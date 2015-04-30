@@ -15,7 +15,8 @@
                photo:(NSData *) aPhoto
                 text:(NSString *) aText
               author:(NSString *) anAuthor
-               coord:(CLLocationCoordinate2D) aCoord;
+               coord:(CLLocationCoordinate2D) aCoord
+              status: (NSString *) aStatus;
 
 @property (readonly) NSString *title;
 @property (readonly) NSString *text;
@@ -23,6 +24,7 @@
 @property (readonly) CLLocationCoordinate2D coors;
 @property (readonly) NSData *image;
 @property (readonly) NSDate *dateCreated;
+@property (strong, nonatomic) NSString *status;
 
 
 @end

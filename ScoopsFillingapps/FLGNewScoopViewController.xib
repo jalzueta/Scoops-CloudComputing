@@ -74,7 +74,7 @@
                     <items>
                         <barButtonItem style="plain" systemItem="bookmarks" id="Hge-gj-QGc">
                             <connections>
-                                <action selector="myScoops:" destination="-1" id="O7A-kk-Vpq"/>
+                                <action selector="allScoops:" destination="-1" id="WP3-dA-4RM"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="CV5-s1-XFP"/>
@@ -90,7 +90,11 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="CpF-l4-aCC"/>
-                        <barButtonItem image="user_icon.png" id="fYN-vE-msj"/>
+                        <barButtonItem image="user_icon.png" id="fYN-vE-msj" userLabel="User">
+                            <connections>
+                                <action selector="myScoops:" destination="-1" id="Gws-TU-NWl"/>
+                            </connections>
+                        </barButtonItem>
                     </items>
                 </toolbar>
             </subviews>
