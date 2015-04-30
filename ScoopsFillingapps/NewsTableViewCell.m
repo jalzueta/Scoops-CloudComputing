@@ -50,7 +50,7 @@
         self.imagen.image = [UIImage imageWithData:_scoop.image];
     }
     self.titleNews.text = _scoop.title;
-    self.status.text = _scoop.status;
+    self.status.text = _scoop.author;
 }
 
 @end

@@ -73,26 +73,28 @@
                     <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                     <items>
                         <barButtonItem style="plain" systemItem="bookmarks" id="Hge-gj-QGc">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="allScoops:" destination="-1" id="WP3-dA-4RM"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="CV5-s1-XFP"/>
-                        <barButtonItem systemItem="add" id="K3g-jg-eF9">
+                        <barButtonItem width="30" style="plain" systemItem="fixedSpace" id="oR7-Dh-AU2"/>
+                        <barButtonItem image="user_icon.png" id="fYN-vE-msj" userLabel="User">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="addScoop:" destination="-1" id="0vm-Nb-wKJ"/>
+                                <action selector="myScoops:" destination="-1" id="Gws-TU-NWl"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Kqi-ci-Yiv"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="CpF-l4-aCC"/>
                         <barButtonItem systemItem="camera" id="8Y9-MG-vyK">
                             <connections>
                                 <action selector="takePhoto:" destination="-1" id="TsH-yB-sKh"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="CpF-l4-aCC"/>
-                        <barButtonItem image="user_icon.png" id="fYN-vE-msj" userLabel="User">
+                        <barButtonItem width="30" style="plain" systemItem="fixedSpace" id="haK-uZ-b6j"/>
+                        <barButtonItem systemItem="add" id="K3g-jg-eF9">
                             <connections>
-                                <action selector="myScoops:" destination="-1" id="Gws-TU-NWl"/>
+                                <action selector="addScoop:" destination="-1" id="0vm-Nb-wKJ"/>
                             </connections>
                         </barButtonItem>
                     </items>

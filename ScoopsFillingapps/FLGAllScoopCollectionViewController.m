@@ -30,6 +30,10 @@
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
+                                                                                           target:self
+                                                                                           action:@selector(backToWriteNewScoop:)];
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -40,12 +44,19 @@
     self.tableView.rowHeight = [NewsTableViewCell height];
     
     self.model = [@[]mutableCopy];
-    [self populateModelFromAzure];
+    [self populateModelFromAzureWithAPI];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Actions
+
+- (void) backToWriteNewScoop: (id) sender{
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
 }
 
 #pragma mark - UITableViewDataSource
@@ -73,31 +84,38 @@
 }
 
 #pragma mark - modelo
-- (void)populateModelFromAzure{
+
+- (void)populateModelFromAzureWithAPI{
     
     MSClient *  client = [MSClient clientWithApplicationURL:[NSURL URLWithString:AZUREMOBILESERVICE_ENDPOINT]
                                              applicationKey:AZUREMOBILESERVICE_APPKEY];
     
-    MSTable *table = [client tableWithName:@"news"];
+    NSDictionary *parameters = @{@"orderedBy" : @"__updatedAt", @"status" : @"publicado"};
     
-    MSQuery *queryModel = [[MSQuery alloc]initWithTable:table];
-    [queryModel readWithCompletion:^(NSArray *items, NSInteger totalCount, NSError *error) {
-        
-        
-        
-        for (id item in items) {
-            NSLog(@"item -> %@", item);
-            Scoop *scoop = [[Scoop alloc]initWithTitle:item[@"title"]
-                                                 photo:nil
-                                                  text:item[@"text"]
-                                                author:item[@"author"]
-                                                 coord:CLLocationCoordinate2DMake([item[@"latitude"] doubleValue], [item[@"longitude"] doubleValue])
-                                                status:item[@"status"]];
+    [client invokeAPI:@"readallpartialnews"
+                      body:nil
+                HTTPMethod:@"GET"
+                parameters:parameters
+                   headers:nil
+                completion:^(id result, NSHTTPURLResponse *response, NSError *error) {
+                    if (!error) {
+                        NSLog(@"resultado --> %@", result);
+                        for (id item in result) {
+                            NSLog(@"item -> %@", item);
+                            Scoop *scoop = [[Scoop alloc]initWithTitle:item[@"title"]
+                                                                 photo:nil
+                                                                  text:item[@"text"]
+                                                                author:item[@"author"]
+                                                                 coord:CLLocationCoordinate2DMake([item[@"latitude"] doubleValue], [item[@"longitude"] doubleValue])
+                                                                status:item[@"status"]];
                             
-            [self.model addObject:scoop];
-        }
-        [self.tableView reloadData];
-    }];
+                            [self.model addObject:scoop];
+                        }
+                        [self.tableView reloadData];
+                    }else{
+                        NSLog(@"error --> %@", error);
+                    }
+                }];
 }
 
 #pragma mark - Utils

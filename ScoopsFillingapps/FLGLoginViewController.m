@@ -192,4 +192,41 @@
     }
 }
 
+#pragma mark - APIs personalizadas
+
+- (void) readOneNew{
+    
+    NSDictionary *parameters = @{@"idNoticia" : @"A412EFE9-6431-49E5-9F39-CDC6E1CD8F9B"};
+    
+    [self.client invokeAPI:@"readonenew"
+                      body:nil
+                HTTPMethod:@"GET" parameters:parameters headers:nil completion:^(id result, NSHTTPURLResponse *response, NSError *error) {
+                    if (!error) {
+                        NSLog(@"resultado --> %@", result);
+                    }else{
+                        NSLog(@"error --> %@", error);
+                    }
+                }];
+}
+
+- (void) obtenerURLBlobFromAzure{
+    
+    NSDictionary *parameters = @{@"blobName" : @"nombre_del_blob"};
+    
+    [self.client invokeAPI:@"dameimagendestorage"
+                      body:nil
+                HTTPMethod:@"GET" parameters:parameters
+                   headers:nil
+                completion:^(id result, NSHTTPURLResponse *response, NSError *error) {
+                    if (!error) {
+                        NSLog(@"resultado --> %@", result);
+                    }else{
+                        NSLog(@"error --> %@", error);
+                    }
+                }];
+}
+
+// Para subir un blob, obtenemos la URL y subimos con NSURLConnection
+
+
 @end

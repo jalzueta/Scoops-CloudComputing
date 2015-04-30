@@ -142,7 +142,8 @@
 
 - (IBAction)allScoops:(id)sender{
     FLGAllScoopCollectionViewController *allScoopsVC = [[FLGAllScoopCollectionViewController alloc] init];
-    [self presentViewController:allScoopsVC
+    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:allScoopsVC];
+    [self presentViewController:navVC
                        animated:YES
                      completion:nil];
 }
