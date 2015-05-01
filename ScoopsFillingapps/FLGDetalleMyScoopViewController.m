@@ -73,7 +73,7 @@
                                                            author:item[@"author"]
                                                             coord:CLLocationCoordinate2DMake([item[@"latitude"] doubleValue], [item[@"longitude"] doubleValue])
                                                            status:item[@"status"]
-                                                            score:item[@"score"]
+                                                            score:[item[@"score"] floatValue]
                                                           scoopId:item[@"id"]];
                        
                        self.scoop = scoop;
@@ -136,6 +136,7 @@
     self.authorView.text = self.scoop.author;
     self.textView.text = self.scoop.text;
     self.statusView.text = self.scoop.status;
+    self.scoreView.text = [NSString stringWithFormat:@"%.2f", self.scoop.score];
     
     self.publicarButton.hidden = ![self.scoop.status isEqualToString:@"notPublished"];
 }

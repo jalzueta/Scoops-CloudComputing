@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imagen;
 @property (weak, nonatomic) IBOutlet UILabel *titleNews;
 @property (weak, nonatomic) IBOutlet UILabel *status;
+@property (weak, nonatomic) IBOutlet UITextField *score;
 
 @end
 
@@ -56,6 +57,7 @@
     }
     self.titleNews.text = _scoop.title;
     self.status.text = _scoop.status;
+    self.score.text = [NSString stringWithFormat:@"%.2f", _scoop.score];
 }
 
 @end

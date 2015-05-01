@@ -28,7 +28,7 @@
           author:(NSString *) anAuthor
                coord:(CLLocationCoordinate2D) aCoord
               status:(NSString *) aStatus
-               score: (NSString *) aScore
+               score: (CGFloat) aScore
              scoopId: (NSString *) scoopId{
     
     if (self = [super init]) {

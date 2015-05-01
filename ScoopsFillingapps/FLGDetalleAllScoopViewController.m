@@ -73,7 +73,7 @@
                                                            author:item[@"author"]
                                                             coord:CLLocationCoordinate2DMake([item[@"latitude"] doubleValue], [item[@"longitude"] doubleValue])
                                                            status:item[@"status"]
-                                                            score:item[@"score"]
+                                                            score:[item[@"score"] floatValue]
                                                           scoopId:item[@"id"]];
                        
                        self.scoop = scoop;
@@ -97,7 +97,7 @@
            completion:^(id result, NSHTTPURLResponse *response, NSError *error) {
                if (!error) {
                    NSLog(@"resultado --> %@", result);
-                   self.scoop.score = result[@"score"];
+                   self.scoop.score = [result[@"score"] floatValue];
                    [self syncViewToModel];
                    [self.view endEditing:YES];
                    [[[UIAlertView alloc] initWithTitle:@"Genial!"
@@ -136,7 +136,7 @@
     
     self.titleView.text = self.scoop.title;
     self.authorView.text = self.scoop.author;
-    self.puntuacionMediaView.text = [NSString stringWithFormat:@"Puntuación media: %@", self.scoop.score];
+    self.puntuacionMediaView.text = [NSString stringWithFormat:@"Puntuación media: %f", self.scoop.score];
     self.tusPuntosView.text = @"";
     self.textView.text = self.scoop.text;
 }

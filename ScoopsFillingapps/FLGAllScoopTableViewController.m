@@ -36,11 +36,12 @@
     
     [self warmUpAzure];
     
-//    if (self.client.currentUser) {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
-                                                                                               target:self
-                                                                                               action:@selector(goBack:)];
-//    }
+    if (self.client.currentUser) {
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                              initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
+                                              target:self
+                                              action:@selector(goBack:)];
+    }
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -129,7 +130,7 @@
                                                                 author:item[@"author"]
                                                                  coord:CLLocationCoordinate2DMake([item[@"latitude"] doubleValue], [item[@"longitude"] doubleValue])
                                                                 status:item[@"status"]
-                                                                 score:item[@"score"]
+                                                                 score:[item[@"score"] floatValue]
                                                                scoopId:item[@"id"]];
                             
                             [self.model addObject:scoop];

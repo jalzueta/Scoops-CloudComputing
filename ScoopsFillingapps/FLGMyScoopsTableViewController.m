@@ -151,7 +151,7 @@
                                                            author:item[@"author"]
                                                             coord:CLLocationCoordinate2DMake([item[@"latitude"] doubleValue], [item[@"longitude"] doubleValue])
                                                            status:item[@"status"]
-                                                            score:item[@"score"]
+                                                            score:[item[@"score"] floatValue]
                                                           scoopId:item[@"id"]];
                        
                        [self.model addObject:scoop];

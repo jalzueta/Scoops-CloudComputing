@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 FillinGAPPs. All rights reserved.
 //
 
+@import UIKit;
 @import Foundation;
 @import CoreLocation;
 
@@ -17,7 +18,7 @@
               author:(NSString *) anAuthor
                coord:(CLLocationCoordinate2D) aCoord
               status: (NSString *) aStatus
-              score: (NSString *) aScore
+              score: (CGFloat) aScore
               scoopId: (NSString *) scoopId;
 
 @property (readonly) NSString *title;
@@ -28,7 +29,7 @@
 @property (readonly) NSDate *dateCreated;
 @property (strong, nonatomic) NSString *status;
 @property (readonly) NSString *scoopId;
-@property (strong, nonatomic) NSString *score;
+@property (nonatomic) CGFloat score;
 
 
 @end
