@@ -32,6 +32,8 @@
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
                                                                                            target:self
                                                                                            action:@selector(backToWriteNewScoop:)];
@@ -49,6 +51,11 @@
     
     self.model = [@[]mutableCopy];
     [self populateModelWithMyPublishNews];
+}
+
+- (void) viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -93,6 +100,7 @@
     Scoop *scoop = [self.model objectAtIndex:indexPath.row];
     
     FLGDetalleMyScoopViewController *detalleScoopVC = [[FLGDetalleMyScoopViewController alloc] initWithModel: scoop];
+    detalleScoopVC.delegate = self;
     [self.navigationController pushViewController:detalleScoopVC
                                          animated:YES];
 }
@@ -107,17 +115,17 @@
 
 - (void)populateModelWithMyPublishNews{
     
-    [self populateModelWithStatus:@"publicado"];
+    [self populateModelWithStatus:@"published"]; //published
 }
 
 - (void)populateModelWithMyPendentNews{
     
-    [self populateModelWithStatus:@"pendiente"];
+    [self populateModelWithStatus:@"pending"]; //pending
 }
 
 - (void)populateModelWithMyUnpublishNews{
     
-    [self populateModelWithStatus:@"no publicado"];
+    [self populateModelWithStatus:@"notPublished"]; //notPublished
 }
 
 - (void) populateModelWithStatus: (NSString *) status{
@@ -180,6 +188,18 @@
         default:
             break;
     }
-    
 }
+
+#pragma mark - FLGDetalleMyScoopViewControllerDelegate
+
+- (void) detalleMyScoopviewController:(FLGDetalleMyScoopViewController *)detalleMyScoopviewController didPublishNewWithId:(NSString *)scoopId{
+    
+    for (Scoop *scoop in self.model) {
+        if ([scoop.scoopId isEqualToString:scoopId]) {
+            [self.model removeObject:scoop];
+            [self.tableView reloadData];
+        }
+    }
+}
+
 @end

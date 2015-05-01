@@ -9,6 +9,7 @@
                 <outlet property="authorView" destination="Qle-pP-Ei9" id="ROU-IV-CK9"/>
                 <outlet property="imageView" destination="y7x-lv-YIB" id="fwB-0g-5g4"/>
                 <outlet property="publicarButton" destination="kSZ-Ko-1Dk" id="6UC-Ag-hhb"/>
+                <outlet property="statusView" destination="2QH-Dn-TAW" id="g9l-M2-xzV"/>
                 <outlet property="textView" destination="y1k-fq-RGB" id="eq6-k5-5d2"/>
                 <outlet property="titleView" destination="h9U-R6-BFj" id="lb5-VE-5VI"/>
                 <outlet property="view" destination="Fev-fZ-i05" id="c03-rf-dR0"/>
@@ -35,7 +36,7 @@
                 </textField>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_image.png" id="y7x-lv-YIB">
                     <rect key="frame" x="10" y="111" width="300" height="371"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" id="y1k-fq-RGB">
                     <rect key="frame" x="8" y="111" width="300" height="371"/>
@@ -50,9 +51,17 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </textView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2QH-Dn-TAW">
+                    <rect key="frame" x="10" y="511" width="300" height="36"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kSZ-Ko-1Dk">
                     <rect key="frame" x="10" y="514" width="298" height="30"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="Publicar">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>

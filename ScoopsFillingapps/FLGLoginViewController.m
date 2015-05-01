@@ -36,6 +36,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = @"Scoops by FillinGAPPs";
+    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     // llamamos a los metodos de Azure para crear y configurar la conexion
     [self warmupMSClient];
@@ -159,13 +162,27 @@
     [self askForLocationPermissions];
 }
 
+- (void) openAppInWritterMode{
+    FLGNewScoopViewController *newScoopVC = [[FLGNewScoopViewController alloc] initWithUser: self.userInfo
+                                                                                     client: self.client];
+//    newScoopVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//    [self presentViewController:newScoopVC
+//                       animated:YES
+//                     completion:nil];
+    
+    [self.navigationController pushViewController:newScoopVC
+                                         animated:YES];
+
+}
+
 - (void) launchReaderMode{
     FLGAllScoopTableViewController *allScoopsVC = [[FLGAllScoopTableViewController alloc] init];
-    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:allScoopsVC];
-    navVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:navVC
-                       animated:YES
-                     completion:nil];
+//    navVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//    [self presentViewController:navVC
+//                       animated:YES
+//                     completion:nil];
+    [self.navigationController pushViewController:allScoopsVC
+                                         animated:YES];
 }
 
 #pragma mark - Location
@@ -185,6 +202,8 @@
         } else {
             NSLog(@"Info.plist does not contain NSLocationAlwaysUsageDescription or NSLocationWhenInUseUsageDescription");
         }
+    }else{
+        [self openAppInWritterMode];
     }
 }
 
@@ -192,13 +211,7 @@
     
     if (status == kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusDenied) {
         
-        FLGNewScoopViewController *newScoopVC = [[FLGNewScoopViewController alloc] initWithUser: self.userInfo
-                                                                                         client: self.client];
-        newScoopVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        
-        [self presentViewController:newScoopVC
-                           animated:YES
-                         completion:nil];
+        [self openAppInWritterMode];
     }
 }
 

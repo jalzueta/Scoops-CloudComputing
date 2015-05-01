@@ -65,20 +65,20 @@
            completion:^(id result, NSHTTPURLResponse *response, NSError *error) {
                if (!error) {
                    NSLog(@"resultado --> %@", result);
-//                   for (id item in result) {
-//                       NSLog(@"item -> %@", item);
-//                       Scoop *scoop = [[Scoop alloc]initWithTitle:item[@"title"]
-//                                                            photo:nil
-//                                                             text:item[@"text"]
-//                                                           author:item[@"author"]
-//                                                            coord:CLLocationCoordinate2DMake([item[@"latitude"] doubleValue], [item[@"longitude"] doubleValue])
-//                                                           status:item[@"status"]
-//                                                            score:item[@"score"]
-//                                                          scoopId:item[@"id"]];
-//                       
-//                       self.scoop = scoop;
-//                   }
-//                   [self syncViewToModel];
+                   for (id item in result) {
+                       NSLog(@"item -> %@", item);
+                       Scoop *scoop = [[Scoop alloc]initWithTitle:item[@"title"]
+                                                            photo:nil
+                                                             text:item[@"text"]
+                                                           author:item[@"author"]
+                                                            coord:CLLocationCoordinate2DMake([item[@"latitude"] doubleValue], [item[@"longitude"] doubleValue])
+                                                           status:item[@"status"]
+                                                            score:item[@"score"]
+                                                          scoopId:item[@"id"]];
+                       
+                       self.scoop = scoop;
+                   }
+                   [self syncViewToModel];
                }else{
                    NSLog(@"error --> %@", error);
                }

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FLGDetalleMyScoopViewController.h"
 
-@interface FLGMyScoopsTableViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface FLGMyScoopsTableViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, FLGDetalleMyScoopViewControllerDelegate>
 
 
 - (IBAction)newsFilter:(id)sender;

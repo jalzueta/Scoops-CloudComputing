@@ -8,6 +8,13 @@
 
 @import UIKit;
 @class Scoop;
+@class FLGDetalleMyScoopViewController;
+
+@protocol FLGDetalleMyScoopViewControllerDelegate <NSObject>
+
+- (void) detalleMyScoopviewController: (FLGDetalleMyScoopViewController *)detalleMyScoopviewController didPublishNewWithId: (NSString *) scoopId;
+
+@end
 
 @interface FLGDetalleMyScoopViewController : UIViewController
 
@@ -15,9 +22,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *authorView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UILabel *statusView;
 @property (weak, nonatomic) IBOutlet UIButton *publicarButton;
 
 @property (nonatomic, strong) Scoop *scoop;
+@property (weak, nonatomic) id<FLGDetalleMyScoopViewControllerDelegate> delegate;
 
 - (id) initWithModel: (Scoop *) scoop;
 

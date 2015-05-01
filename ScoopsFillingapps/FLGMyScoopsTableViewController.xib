@@ -16,17 +16,18 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="QVO-La-tNo">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="514"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 </tableView>
                 <view contentMode="scaleToFill" id="8Xc-pI-ian">
-                    <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                    <rect key="frame" x="0.0" y="514" width="320" height="54"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <subviews>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="qnM-KE-erL">
-                            <rect key="frame" x="8" y="8" width="304" height="29"/>
+                            <rect key="frame" x="8" y="13" width="304" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <segments>
                                 <segment title="Publicadas"/>
                                 <segment title="Pendientes"/>

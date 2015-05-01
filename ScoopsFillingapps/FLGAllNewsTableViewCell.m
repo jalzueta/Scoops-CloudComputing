@@ -23,6 +23,11 @@
 - (void)awakeFromNib {
     // Initialization code
     self.backgroundColor = [UIColor clearColor];
+    
+    self.imagen.layer.borderWidth = 0.5;
+    self.imagen.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.imagen.layer.cornerRadius = 5;
+    self.imagen.layer.masksToBounds = YES;
 }
 
 - (void)prepareForReuse{

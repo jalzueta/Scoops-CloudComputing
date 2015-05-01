@@ -26,7 +26,7 @@
 @property (readonly) CLLocationCoordinate2D coors;
 @property (readonly) NSData *image;
 @property (readonly) NSDate *dateCreated;
-@property (readonly) NSString *status;
+@property (strong, nonatomic) NSString *status;
 @property (readonly) NSString *scoopId;
 @property (readonly) NSString *score;
 

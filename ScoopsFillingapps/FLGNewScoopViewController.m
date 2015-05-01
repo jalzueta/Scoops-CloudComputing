@@ -43,6 +43,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     [self setupKeyboardNotifications];
 //    [self askForLocationPermissions];
 }
@@ -99,12 +101,13 @@
                                 self.oldRect.size.width,
                                 self.oldRect.size.height - keyFrame.size.height + self.toolBarView.frame.size.height);
     
+    self.photoView.hidden = YES;
+    
     [UIView animateWithDuration:duration
                           delay:0
                         options:0
                      animations:^{
                          self.scoopTextView.frame = newRect;
-                         self.photoView.hidden = YES;
                      } completion:^(BOOL finished) {
                          //
                      }];
@@ -121,9 +124,8 @@
                         options:0
                      animations:^{
                          self.scoopTextView.frame = self.oldRect;
-                         self.photoView.hidden = NO;
                      } completion:^(BOOL finished) {
-                         //
+                         self.photoView.hidden = NO;
                      }];
 }
 

@@ -32,6 +32,8 @@
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     [self warmUpAzure];
     
 //    if (self.client.currentUser) {
@@ -109,7 +111,7 @@
 
 - (void)populateModelFromAzureWithAPI{
     
-    NSDictionary *parameters = @{@"orderedBy" : @"__updatedAt", @"status" : @"publicado"};
+    NSDictionary *parameters = @{@"orderedBy" : @"__updatedAt", @"status" : @"published"};
     
     [self.client invokeAPI:@"readallpartialnews"
                       body:nil

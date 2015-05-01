@@ -21,7 +21,8 @@
     // Override point for customization after application launch.
     
     FLGLoginViewController *loginVC = [[FLGLoginViewController alloc] init];
-    self.window.rootViewController = loginVC;
+    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    self.window.rootViewController = navVC;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

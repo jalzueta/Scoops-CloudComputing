@@ -52,7 +52,7 @@
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_image.png" id="3fn-Fp-Ebc">
                     <rect key="frame" x="10" y="187" width="300" height="322"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" id="JGk-Zn-ghu">
                     <rect key="frame" x="10" y="187" width="300" height="322"/>

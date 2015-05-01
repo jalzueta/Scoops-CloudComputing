@@ -20,7 +20,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zeI-AZ-pa1">
-                        <rect key="frame" x="0.0" y="0.0" width="94" height="94"/>
+                        <rect key="frame" x="10" y="10" width="74" height="74"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wdx-e1-3cu">
                         <rect key="frame" x="102" y="13" width="180" height="35"/>

@@ -87,7 +87,8 @@
 
 - (void)sendStatusToAzureWithAPI{
     
-    NSDictionary *parameters = @{@"idNoticia" : _scoop.scoopId, @"status" : @"notPublish"};
+    NSString *newStatus = @"pending";
+    NSDictionary *parameters = @{@"idNoticia" : _scoop.scoopId, @"status" : newStatus};
     
     [self.client invokeAPI:@"updatestatus"
                  body:nil
@@ -97,20 +98,10 @@
            completion:^(id result, NSHTTPURLResponse *response, NSError *error) {
                if (!error) {
                    NSLog(@"resultado --> %@", result);
-                   for (id item in result) {
-                       NSLog(@"item -> %@", item);
-                       Scoop *scoop = [[Scoop alloc]initWithTitle:item[@"title"]
-                                                            photo:nil
-                                                             text:item[@"text"]
-                                                           author:item[@"author"]
-                                                            coord:CLLocationCoordinate2DMake([item[@"latitude"] doubleValue], [item[@"longitude"] doubleValue])
-                                                           status:item[@"status"]
-                                                            score:item[@"score"]
-                                                          scoopId:item[@"id"]];
-                       
-                       self.scoop = scoop;
-                   }
+                   self.scoop.status = newStatus;
                    [self syncViewToModel];
+                   [self.delegate detalleMyScoopviewController:self
+                                           didPublishNewWithId:self.scoop.scoopId];
                }else{
                    NSLog(@"error --> %@", error);
                }
@@ -144,8 +135,9 @@
     self.titleView.text = self.scoop.title;
     self.authorView.text = self.scoop.author;
     self.textView.text = self.scoop.text;
+    self.statusView.text = self.scoop.status;
     
-    self.publicarButton.hidden = ![self.scoop.status isEqualToString:@"notPublish"];
+    self.publicarButton.hidden = ![self.scoop.status isEqualToString:@"notPublished"];
 }
 
 #pragma mark - keyboard
