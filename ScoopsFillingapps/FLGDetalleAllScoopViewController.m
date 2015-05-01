@@ -9,6 +9,8 @@
 #import "FLGDetalleAllScoopViewController.h"
 #import "Scoop.h"
 #import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 #import "SharedKeys.h"
 
 @interface FLGDetalleAllScoopViewController ()
@@ -39,6 +41,12 @@
     
     [self warmUpAzure];
     [self populateModelFromAzureWithAPI];
+}
+
+- (void) viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    self.screenName = @"allScoopDetail";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,7 +95,7 @@
 
 - (void)sendScoreToAzureWithAPI{
     
-    NSDictionary *parameters = @{@"idNoticia" : _scoop.scoopId, @"score" : self.tusPuntosView.text};
+    NSDictionary *parameters = @{@"idNoticia" : _scoop.scoopId, @"score" : self.scoreView.text};
     
     [self.client invokeAPI:@"writescore"
                  body:nil
@@ -118,6 +126,20 @@
 }
 
 - (IBAction)sendScore:(id)sender {
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    NSString *cathegory;
+    if (self.client.currentUser) {
+        cathegory = @"writter";
+    }else{
+        cathegory = @"reader";
+    }
+    GAIDictionaryBuilder *dictBuilder = [GAIDictionaryBuilder createEventWithCategory:cathegory
+                                                                               action:@"sendScore"
+                                                                                label:nil
+                                                                                value:@([self.scoreView.text intValue])];
+    [tracker send: [dictBuilder build]];
+    
     [self sendScoreToAzureWithAPI];
 }
 
@@ -137,7 +159,7 @@
     self.titleView.text = self.scoop.title;
     self.authorView.text = self.scoop.author;
     self.puntuacionMediaView.text = [NSString stringWithFormat:@"Puntuación media: %f", self.scoop.score];
-    self.tusPuntosView.text = @"";
+    self.scoreView.text = @"";
     self.textView.text = self.scoop.text;
 }
 

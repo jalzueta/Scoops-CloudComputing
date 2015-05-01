@@ -7,13 +7,14 @@
 //
 
 @import UIKit;
+#import "GAITrackedViewController.h"
 
 typedef void (^profileCompletion)(NSDictionary* profInfo);
 typedef void (^completeBlock)(NSArray* results);
 typedef void (^completeOnError)(NSError *error);
 typedef void (^completionWithURL)(NSURL *theUrl, NSError *error);
 
-@interface FLGLoginViewController : UIViewController
+@interface FLGLoginViewController : GAITrackedViewController
 
 - (IBAction)skipLogin:(id)sender;
 - (IBAction)login:(id)sender;

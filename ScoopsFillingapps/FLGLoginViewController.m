@@ -8,6 +8,8 @@
 
 #import "FLGLoginViewController.h"
 #import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 #import "Scoop.h"
 #import "SharedKeys.h"
 #import "FLGNewScoopViewController.h"
@@ -47,6 +49,7 @@
 - (void) viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    self.screenName = @"login";
     
     self.skipButton.layer.cornerRadius = 5;
     self.loginButton.layer.cornerRadius = 5;
@@ -163,6 +166,14 @@
 }
 
 - (void) openAppInWritterMode{
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    GAIDictionaryBuilder *dictBuilder = [GAIDictionaryBuilder createEventWithCategory:@"login"
+                                                                               action:@"mode"
+                                                                                label:@"writter" // Nombre del producto consultado
+                                                                                value:nil];
+    [tracker send: [dictBuilder build]];
+    
     FLGNewScoopViewController *newScoopVC = [[FLGNewScoopViewController alloc] initWithUser: self.userInfo
                                                                                      client: self.client];
 //    newScoopVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -176,6 +187,14 @@
 }
 
 - (void) launchReaderMode{
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    GAIDictionaryBuilder *dictBuilder = [GAIDictionaryBuilder createEventWithCategory:@"login"
+                                                                               action:@"mode"
+                                                                                label:@"reader" // Nombre del producto consultado
+                                                                                value:nil];
+    [tracker send: [dictBuilder build]];
+    
     FLGAllScoopTableViewController *allScoopsVC = [[FLGAllScoopTableViewController alloc] init];
 //    navVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 //    [self presentViewController:navVC

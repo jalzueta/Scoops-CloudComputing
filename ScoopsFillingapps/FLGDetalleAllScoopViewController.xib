@@ -9,9 +9,9 @@
                 <outlet property="authorView" destination="Qle-pP-Ei9" id="ROU-IV-CK9"/>
                 <outlet property="imageView" destination="y7x-lv-YIB" id="fwB-0g-5g4"/>
                 <outlet property="puntuacionMediaView" destination="YwW-Dk-Unk" id="PdS-P3-Vog"/>
+                <outlet property="scoreView" destination="QTl-Vm-JX5" id="WdW-YI-uwQ"/>
                 <outlet property="textView" destination="y1k-fq-RGB" id="eq6-k5-5d2"/>
                 <outlet property="titleView" destination="h9U-R6-BFj" id="lb5-VE-5VI"/>
-                <outlet property="tusPuntosView" destination="QTl-Vm-JX5" id="iJJ-bi-E33"/>
                 <outlet property="view" destination="Fev-fZ-i05" id="c03-rf-dR0"/>
             </connections>
         </placeholder>

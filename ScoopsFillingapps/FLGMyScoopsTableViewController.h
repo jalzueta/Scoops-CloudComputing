@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "FLGDetalleMyScoopViewController.h"
+#import "GAITrackedViewController.h"
 
-@interface FLGMyScoopsTableViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, FLGDetalleMyScoopViewControllerDelegate>
+@interface FLGMyScoopsTableViewController : GAITrackedViewController<UITableViewDelegate, UITableViewDataSource, FLGDetalleMyScoopViewControllerDelegate>
 
 
 - (IBAction)newsFilter:(id)sender;

@@ -8,15 +8,16 @@
 
 @import UIKit;
 @class Scoop;
+#import "GAITrackedViewController.h"
 
-@interface FLGDetalleAllScoopViewController : UIViewController
+@interface FLGDetalleAllScoopViewController : GAITrackedViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *titleView;
 @property (weak, nonatomic) IBOutlet UITextField *authorView;
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *puntuacionMediaView;
-@property (weak, nonatomic) IBOutlet UITextField *tusPuntosView;
+@property (weak, nonatomic) IBOutlet UITextField *scoreView;
 
 @property (nonatomic, strong) Scoop *scoop;
 

@@ -8,8 +8,9 @@
 
 @import UIKit;
 #import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+#import "GAITrackedViewController.h"
 
-@interface FLGNewScoopViewController : UIViewController
+@interface FLGNewScoopViewController : GAITrackedViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *scoopAuthorView;
 @property (weak, nonatomic) IBOutlet UIImageView *scoopAuthorImageView;

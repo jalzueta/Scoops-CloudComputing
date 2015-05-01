@@ -8,3 +8,4 @@
 
 #define AZUREMOBILESERVICE_ENDPOINT @"https://fillingappscloudexercise.azure-mobile.net/"
 #define AZUREMOBILESERVICE_APPKEY @"sQrZQmRafmhofcWPXrzBEVNnYCqMfQ47"
+#define UA_ANALYTICS @"UA-62526678-1"

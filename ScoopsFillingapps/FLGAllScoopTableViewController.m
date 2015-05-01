@@ -8,6 +8,8 @@
 
 #import "FLGAllScoopTableViewController.h"
 #import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 #import "SharedKeys.h"
 #import "Scoop.h"
 #import "FLGAllNewsTableViewCell.h"
@@ -29,18 +31,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     [self warmUpAzure];
     
     if (self.client.currentUser) {
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                              initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
-                                              target:self
-                                              action:@selector(goBack:)];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                                  initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
+                                                  target:self
+                                                  action:@selector(goBack:)];
     }
     
     self.tableView.delegate = self;
@@ -54,6 +53,12 @@
     
     self.model = [@[]mutableCopy];
     [self populateModelFromAzureWithAPI];
+}
+
+- (void) viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    self.screenName = @"allScoops";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -93,6 +98,19 @@
 #pragma mark - UITableViewDelegate
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    NSString *cathegory;
+    if (self.client.currentUser) {
+        cathegory = @"writter";
+    }else{
+        cathegory = @"reader";
+    }
+    GAIDictionaryBuilder *dictBuilder = [GAIDictionaryBuilder createEventWithCategory:cathegory
+                                                                               action:@"openAllScoopDetail"
+                                                                                label:nil
+                                                                                value:nil];
+    [tracker send: [dictBuilder build]];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     

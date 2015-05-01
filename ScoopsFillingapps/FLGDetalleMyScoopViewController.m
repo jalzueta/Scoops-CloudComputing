@@ -9,6 +9,8 @@
 #import "FLGDetalleMyScoopViewController.h"
 #import "Scoop.h"
 #import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 #import "SharedKeys.h"
 
 @interface FLGDetalleMyScoopViewController ()
@@ -40,6 +42,13 @@
     [self warmUpAzure];
     [self populateModelFromAzureWithAPI];
 }
+
+- (void) viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    self.screenName = @"myScoopsDetail";
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -115,6 +124,14 @@
 }
 
 - (IBAction)publish:(id)sender{
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    GAIDictionaryBuilder *dictBuilder = [GAIDictionaryBuilder createEventWithCategory:@"writter"
+                                                                               action:@"publish"
+                                                                                label:nil
+                                                                                value:nil];
+    [tracker send: [dictBuilder build]];
+    
     [self sendStatusToAzureWithAPI];
 }
 

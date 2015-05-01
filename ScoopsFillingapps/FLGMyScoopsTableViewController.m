@@ -8,6 +8,8 @@
 
 #import "FLGMyScoopsTableViewController.h"
 #import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 #import "SharedKeys.h"
 #import "Scoop.h"
 #import "FLGMyNewsTableViewCell.h"
@@ -56,6 +58,7 @@
 - (void) viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    self.screenName = @"myScoops";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,6 +97,13 @@
 
 #pragma mark - UITableViewDelegate
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    GAIDictionaryBuilder *dictBuilder = [GAIDictionaryBuilder createEventWithCategory:@"writter"
+                                                                               action:@"openMyScoopDetail"
+                                                                                label:nil
+                                                                                value:nil];
+    [tracker send: [dictBuilder build]];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     

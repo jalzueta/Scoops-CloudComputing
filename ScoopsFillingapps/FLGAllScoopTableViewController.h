@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 
-@interface FLGAllScoopTableViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface FLGAllScoopTableViewController : GAITrackedViewController<UITableViewDelegate, UITableViewDataSource>
 
 @end

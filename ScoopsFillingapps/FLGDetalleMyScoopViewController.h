@@ -9,6 +9,7 @@
 @import UIKit;
 @class Scoop;
 @class FLGDetalleMyScoopViewController;
+#import "GAITrackedViewController.h"
 
 @protocol FLGDetalleMyScoopViewControllerDelegate <NSObject>
 
@@ -16,7 +17,7 @@
 
 @end
 
-@interface FLGDetalleMyScoopViewController : UIViewController
+@interface FLGDetalleMyScoopViewController : GAITrackedViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *titleView;
 @property (weak, nonatomic) IBOutlet UITextField *authorView;

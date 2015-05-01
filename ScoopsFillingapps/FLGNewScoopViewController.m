@@ -7,6 +7,8 @@
 //
 
 #import "FLGNewScoopViewController.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 #import "FLGConstants.h"
 #import "FLGAllScoopTableViewController.h"
 #import "FLGMyScoopsTableViewController.h"
@@ -53,10 +55,24 @@
     
     [super viewWillAppear:animated];
     
+    self.screenName = @"NewScoop";
+    
     [self configScreenAppearance];
     [self configAuthor];
     
     [self getUserLocation];
+}
+
+- (void) viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    GAIDictionaryBuilder *dictBuilder = [GAIDictionaryBuilder createEventWithCategory:@"screen"
+                                                                               action:@"enter"
+                                                                                label:@"newScoop"
+                                                                                value:0];
+    [tracker send: [dictBuilder build]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -137,6 +153,13 @@
 }
 
 - (IBAction)addScoop:(id)sender {
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    GAIDictionaryBuilder *dictBuilder = [GAIDictionaryBuilder createEventWithCategory:@"writter"
+                                                                               action:@"addScoop"
+                                                                                label:@""
+                                                                                value:nil];
+    [tracker send: [dictBuilder build]];
+    
     [self addScoopToAzure];
 }
 
@@ -291,19 +314,28 @@
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
 
+    NSString *source;
     switch (buttonIndex) {
         case 0:
-            [self takePicture:CAMERA];
+            source = CAMERA;
             break;
         case 1:
-            [self takePicture:ROLL];
+            source = ROLL;
             break;
         case 2:
-            [self takePicture:ALBUM];
+            source = ALBUM;
             break;
         default:
             break;
     }
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    GAIDictionaryBuilder *dictBuilder = [GAIDictionaryBuilder createEventWithCategory:@"writter"
+                                                                               action:@"takePhoto"
+                                                                                label:source
+                                                                                value:nil];
+    [tracker send: [dictBuilder build]];
+    
+    [self takePicture: source];
 }
 
     

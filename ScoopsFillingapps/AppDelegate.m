@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "GAI.h"
+#import "GAITracker.h"
+#import "SharedKeys.h"
 #import "FLGLoginViewController.h"
 
 @interface AppDelegate ()
@@ -19,6 +22,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    // -------------------- Google Analytics ---------------------------------
+    // Configurar comportamiento
+    [GAI sharedInstance].trackUncaughtExceptions = NO; // No captura las excepciones
+    [GAI sharedInstance].dispatchInterval = 30;
+    
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose]; // Sacara por consola los tracks de GA
+    
+    // Iniciamos la captura
+    [[GAI sharedInstance] trackerWithTrackingId:UA_ANALYTICS];
+    // -----------------------------------------------------------------------
+    
     
     FLGLoginViewController *loginVC = [[FLGLoginViewController alloc] init];
     UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:loginVC];
