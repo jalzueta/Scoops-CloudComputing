@@ -28,7 +28,7 @@
 @property (readonly) NSDate *dateCreated;
 @property (strong, nonatomic) NSString *status;
 @property (readonly) NSString *scoopId;
-@property (readonly) NSString *score;
+@property (strong, nonatomic) NSString *score;
 
 
 @end
