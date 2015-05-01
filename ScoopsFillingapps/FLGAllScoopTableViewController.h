@@ -1,5 +1,5 @@
 //
-//  FLGAllScoopCollectionViewController.h
+//  FLGAllScoopTableViewController.h
 //  ScoopsFillingapps
 //
 //  Created by Javi Alzueta on 30/4/15.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FLGAllScoopCollectionViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface FLGAllScoopTableViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @end

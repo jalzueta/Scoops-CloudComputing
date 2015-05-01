@@ -11,6 +11,7 @@
 #import "Scoop.h"
 #import "SharedKeys.h"
 #import "FLGNewScoopViewController.h"
+#import "FLGAllScoopTableViewController.h"
 
 //@import QuartzCore;
 @import CoreLocation;
@@ -65,6 +66,7 @@
 #pragma mark - Actions
 
 - (IBAction)skipLogin:(id)sender {
+    [self launchReaderMode];
 }
 
 - (IBAction)login:(id)sender {
@@ -145,7 +147,7 @@
 }
 
 - (void) saveAuthInfo{
-    [[NSUserDefaults standardUserDefaults]setObject:self.client.currentUser.userId forKey:@"userID"];
+    [[NSUserDefaults standardUserDefaults]setObject:[self.client.currentUser.userId stringByReplacingOccurrencesOfString:@"Facebook:" withString:@""] forKey:@"userID"];
     [[NSUserDefaults standardUserDefaults]setObject:self.client.currentUser.mobileServiceAuthenticationToken
                                              forKey:@"tokenFB"];
     
@@ -155,7 +157,15 @@
 - (void) launchWritterModeWithUser: (id) userInfo{
     
     [self askForLocationPermissions];
-    
+}
+
+- (void) launchReaderMode{
+    FLGAllScoopTableViewController *allScoopsVC = [[FLGAllScoopTableViewController alloc] init];
+    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:allScoopsVC];
+    navVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:navVC
+                       animated:YES
+                     completion:nil];
 }
 
 #pragma mark - Location

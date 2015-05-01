@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		599455CE1AF2F699001E925E /* FLGAllNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 599455CC1AF2F699001E925E /* FLGAllNewsTableViewCell.m */; };
+		599455CF1AF2F699001E925E /* FLGAllNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 599455CD1AF2F699001E925E /* FLGAllNewsTableViewCell.xib */; };
+		599455D31AF2FBE3001E925E /* FLGDetalleAllScoopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 599455D11AF2FBE3001E925E /* FLGDetalleAllScoopViewController.m */; };
+		599455D41AF2FBE3001E925E /* FLGDetalleAllScoopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 599455D21AF2FBE3001E925E /* FLGDetalleAllScoopViewController.xib */; };
+		599455D81AF30D2F001E925E /* FLGDetalleMyScoopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 599455D61AF30D2F001E925E /* FLGDetalleMyScoopViewController.m */; };
+		599455D91AF30D2F001E925E /* FLGDetalleMyScoopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 599455D71AF30D2F001E925E /* FLGDetalleMyScoopViewController.xib */; };
 		59C54CC71AF1772900A8CFF3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C54CC61AF1772900A8CFF3 /* main.m */; };
 		59C54CCA1AF1772900A8CFF3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C54CC91AF1772900A8CFF3 /* AppDelegate.m */; };
 		59C54CCC1AF1772900A8CFF3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59C54CCB1AF1772900A8CFF3 /* Images.xcassets */; };
@@ -28,10 +34,12 @@
 		59C54D0C1AF2317A00A8CFF3 /* roll@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59C54D061AF2317A00A8CFF3 /* roll@2x.png */; };
 		59C54D0D1AF2317A00A8CFF3 /* roll@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 59C54D071AF2317A00A8CFF3 /* roll@3x.png */; };
 		59C54D0F1AF2329B00A8CFF3 /* no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 59C54D0E1AF2329B00A8CFF3 /* no_image.png */; };
-		59C54D151AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C54D131AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.m */; };
-		59C54D161AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59C54D141AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.xib */; };
-		59C54D1A1AF27EE800A8CFF3 /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C54D181AF27EE800A8CFF3 /* NewsTableViewCell.m */; };
-		59C54D1B1AF27EE800A8CFF3 /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59C54D191AF27EE800A8CFF3 /* NewsTableViewCell.xib */; };
+		59C54D151AF2495100A8CFF3 /* FLGAllScoopTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C54D131AF2495100A8CFF3 /* FLGAllScoopTableViewController.m */; };
+		59C54D161AF2495100A8CFF3 /* FLGAllScoopTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59C54D141AF2495100A8CFF3 /* FLGAllScoopTableViewController.xib */; };
+		59C54D201AF2E0B600A8CFF3 /* FLGMyScoopsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C54D1E1AF2E0B600A8CFF3 /* FLGMyScoopsTableViewController.m */; };
+		59C54D211AF2E0B600A8CFF3 /* FLGMyScoopsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59C54D1F1AF2E0B600A8CFF3 /* FLGMyScoopsTableViewController.xib */; };
+		59C54D251AF2EE2000A8CFF3 /* FLGMyNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C54D231AF2EE2000A8CFF3 /* FLGMyNewsTableViewCell.m */; };
+		59C54D261AF2EE2000A8CFF3 /* FLGMyNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59C54D241AF2EE2000A8CFF3 /* FLGMyNewsTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +53,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		599455CB1AF2F699001E925E /* FLGAllNewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGAllNewsTableViewCell.h; sourceTree = "<group>"; };
+		599455CC1AF2F699001E925E /* FLGAllNewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLGAllNewsTableViewCell.m; sourceTree = "<group>"; };
+		599455CD1AF2F699001E925E /* FLGAllNewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLGAllNewsTableViewCell.xib; sourceTree = "<group>"; };
+		599455D01AF2FBE3001E925E /* FLGDetalleAllScoopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGDetalleAllScoopViewController.h; sourceTree = "<group>"; };
+		599455D11AF2FBE3001E925E /* FLGDetalleAllScoopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLGDetalleAllScoopViewController.m; sourceTree = "<group>"; };
+		599455D21AF2FBE3001E925E /* FLGDetalleAllScoopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLGDetalleAllScoopViewController.xib; sourceTree = "<group>"; };
+		599455D51AF30D2F001E925E /* FLGDetalleMyScoopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGDetalleMyScoopViewController.h; sourceTree = "<group>"; };
+		599455D61AF30D2F001E925E /* FLGDetalleMyScoopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLGDetalleMyScoopViewController.m; sourceTree = "<group>"; };
+		599455D71AF30D2F001E925E /* FLGDetalleMyScoopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLGDetalleMyScoopViewController.xib; sourceTree = "<group>"; };
 		59C54CC11AF1772900A8CFF3 /* ScoopsFillingapps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScoopsFillingapps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59C54CC51AF1772900A8CFF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59C54CC61AF1772900A8CFF3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -76,12 +93,15 @@
 		59C54D071AF2317A00A8CFF3 /* roll@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roll@3x.png"; sourceTree = "<group>"; };
 		59C54D0E1AF2329B00A8CFF3 /* no_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_image.png; sourceTree = "<group>"; };
 		59C54D111AF233DF00A8CFF3 /* FLGConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FLGConstants.h; sourceTree = "<group>"; };
-		59C54D121AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGAllScoopCollectionViewController.h; sourceTree = "<group>"; };
-		59C54D131AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLGAllScoopCollectionViewController.m; sourceTree = "<group>"; };
-		59C54D141AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLGAllScoopCollectionViewController.xib; sourceTree = "<group>"; };
-		59C54D171AF27EE800A8CFF3 /* NewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTableViewCell.h; sourceTree = "<group>"; };
-		59C54D181AF27EE800A8CFF3 /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTableViewCell.m; sourceTree = "<group>"; };
-		59C54D191AF27EE800A8CFF3 /* NewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
+		59C54D121AF2495100A8CFF3 /* FLGAllScoopTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGAllScoopTableViewController.h; sourceTree = "<group>"; };
+		59C54D131AF2495100A8CFF3 /* FLGAllScoopTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLGAllScoopTableViewController.m; sourceTree = "<group>"; };
+		59C54D141AF2495100A8CFF3 /* FLGAllScoopTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLGAllScoopTableViewController.xib; sourceTree = "<group>"; };
+		59C54D1D1AF2E0B600A8CFF3 /* FLGMyScoopsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGMyScoopsTableViewController.h; sourceTree = "<group>"; };
+		59C54D1E1AF2E0B600A8CFF3 /* FLGMyScoopsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLGMyScoopsTableViewController.m; sourceTree = "<group>"; };
+		59C54D1F1AF2E0B600A8CFF3 /* FLGMyScoopsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLGMyScoopsTableViewController.xib; sourceTree = "<group>"; };
+		59C54D221AF2EE2000A8CFF3 /* FLGMyNewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLGMyNewsTableViewCell.h; sourceTree = "<group>"; };
+		59C54D231AF2EE2000A8CFF3 /* FLGMyNewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLGMyNewsTableViewCell.m; sourceTree = "<group>"; };
+		59C54D241AF2EE2000A8CFF3 /* FLGMyNewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FLGMyNewsTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,9 +204,18 @@
 				59C54CF11AF1FEE300A8CFF3 /* FLGNewScoopViewController.h */,
 				59C54CF21AF1FEE300A8CFF3 /* FLGNewScoopViewController.m */,
 				59C54CF31AF1FEE300A8CFF3 /* FLGNewScoopViewController.xib */,
-				59C54D121AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.h */,
-				59C54D131AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.m */,
-				59C54D141AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.xib */,
+				59C54D121AF2495100A8CFF3 /* FLGAllScoopTableViewController.h */,
+				59C54D131AF2495100A8CFF3 /* FLGAllScoopTableViewController.m */,
+				59C54D141AF2495100A8CFF3 /* FLGAllScoopTableViewController.xib */,
+				599455D01AF2FBE3001E925E /* FLGDetalleAllScoopViewController.h */,
+				599455D11AF2FBE3001E925E /* FLGDetalleAllScoopViewController.m */,
+				599455D21AF2FBE3001E925E /* FLGDetalleAllScoopViewController.xib */,
+				59C54D1D1AF2E0B600A8CFF3 /* FLGMyScoopsTableViewController.h */,
+				59C54D1E1AF2E0B600A8CFF3 /* FLGMyScoopsTableViewController.m */,
+				59C54D1F1AF2E0B600A8CFF3 /* FLGMyScoopsTableViewController.xib */,
+				599455D51AF30D2F001E925E /* FLGDetalleMyScoopViewController.h */,
+				599455D61AF30D2F001E925E /* FLGDetalleMyScoopViewController.m */,
+				599455D71AF30D2F001E925E /* FLGDetalleMyScoopViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -211,9 +240,12 @@
 		59C54D1C1AF27EEC00A8CFF3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				59C54D171AF27EE800A8CFF3 /* NewsTableViewCell.h */,
-				59C54D181AF27EE800A8CFF3 /* NewsTableViewCell.m */,
-				59C54D191AF27EE800A8CFF3 /* NewsTableViewCell.xib */,
+				599455CB1AF2F699001E925E /* FLGAllNewsTableViewCell.h */,
+				599455CC1AF2F699001E925E /* FLGAllNewsTableViewCell.m */,
+				599455CD1AF2F699001E925E /* FLGAllNewsTableViewCell.xib */,
+				59C54D221AF2EE2000A8CFF3 /* FLGMyNewsTableViewCell.h */,
+				59C54D231AF2EE2000A8CFF3 /* FLGMyNewsTableViewCell.m */,
+				59C54D241AF2EE2000A8CFF3 /* FLGMyNewsTableViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -298,20 +330,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				599455D41AF2FBE3001E925E /* FLGDetalleAllScoopViewController.xib in Resources */,
 				59C54D091AF2317A00A8CFF3 /* album@2x.png in Resources */,
 				59C54D0C1AF2317A00A8CFF3 /* roll@2x.png in Resources */,
+				59C54D261AF2EE2000A8CFF3 /* FLGMyNewsTableViewCell.xib in Resources */,
 				59C54CF51AF1FEE300A8CFF3 /* FLGNewScoopViewController.xib in Resources */,
+				599455CF1AF2F699001E925E /* FLGAllNewsTableViewCell.xib in Resources */,
 				59C54CCF1AF1772900A8CFF3 /* LaunchScreen.xib in Resources */,
 				59C54D0F1AF2329B00A8CFF3 /* no_image.png in Resources */,
 				59C54D081AF2317A00A8CFF3 /* album.png in Resources */,
+				599455D91AF30D2F001E925E /* FLGDetalleMyScoopViewController.xib in Resources */,
 				59C54CEE1AF17ECE00A8CFF3 /* FLGLoginViewController.xib in Resources */,
-				59C54D161AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.xib in Resources */,
+				59C54D161AF2495100A8CFF3 /* FLGAllScoopTableViewController.xib in Resources */,
 				59C54CCC1AF1772900A8CFF3 /* Images.xcassets in Resources */,
 				59C54CFC1AF2028200A8CFF3 /* user_icon@3x.png in Resources */,
-				59C54D1B1AF27EE800A8CFF3 /* NewsTableViewCell.xib in Resources */,
 				59C54D0D1AF2317A00A8CFF3 /* roll@3x.png in Resources */,
 				59C54D0B1AF2317A00A8CFF3 /* roll.png in Resources */,
 				59C54CFB1AF2028200A8CFF3 /* user_icon@2x.png in Resources */,
+				59C54D211AF2E0B600A8CFF3 /* FLGMyScoopsTableViewController.xib in Resources */,
 				59C54D0A1AF2317A00A8CFF3 /* album@3x.png in Resources */,
 				59C54CFA1AF2028200A8CFF3 /* user_icon.png in Resources */,
 			);
@@ -331,13 +367,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59C54D201AF2E0B600A8CFF3 /* FLGMyScoopsTableViewController.m in Sources */,
+				599455CE1AF2F699001E925E /* FLGAllNewsTableViewCell.m in Sources */,
 				59C54CED1AF17ECE00A8CFF3 /* FLGLoginViewController.m in Sources */,
+				599455D31AF2FBE3001E925E /* FLGDetalleAllScoopViewController.m in Sources */,
 				59C54CE91AF17CF300A8CFF3 /* Scoop.m in Sources */,
+				599455D81AF30D2F001E925E /* FLGDetalleMyScoopViewController.m in Sources */,
+				59C54D251AF2EE2000A8CFF3 /* FLGMyNewsTableViewCell.m in Sources */,
 				59C54CCA1AF1772900A8CFF3 /* AppDelegate.m in Sources */,
-				59C54D1A1AF27EE800A8CFF3 /* NewsTableViewCell.m in Sources */,
 				59C54CF41AF1FEE300A8CFF3 /* FLGNewScoopViewController.m in Sources */,
 				59C54CC71AF1772900A8CFF3 /* main.m in Sources */,
-				59C54D151AF2495100A8CFF3 /* FLGAllScoopCollectionViewController.m in Sources */,
+				59C54D151AF2495100A8CFF3 /* FLGAllScoopTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +568,7 @@
 				59C54CE01AF1772900A8CFF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		59C54CE11AF1772900A8CFF3 /* Build configuration list for PBXNativeTarget "ScoopsFillingappsTests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +577,7 @@
 				59C54CE31AF1772900A8CFF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

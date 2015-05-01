@@ -27,7 +27,9 @@
              text:(NSString *) aText
           author:(NSString *) anAuthor
                coord:(CLLocationCoordinate2D) aCoord
-              status:(NSString *) aStatus{
+              status:(NSString *) aStatus
+               score: (NSString *) aScore
+             scoopId: (NSString *) scoopId{
     
     if (self = [super init]) {
         _title = aTitle;
@@ -37,6 +39,8 @@
         _image = aPhoto;
         _dateCreated = [NSDate date];
         _status = aStatus;
+        _score = aScore;
+        _scoopId = scoopId;
     }
     return self;
 }

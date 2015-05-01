@@ -1,24 +1,16 @@
 //
-//  NewsTableViewCell.m
-//  Scoops
+//  FLGAllNewsTableViewCell.m
+//  ScoopsFillingapps
 //
-//  Created by Juan Antonio Martin Noguera on 19/04/15.
-//  Copyright (c) 2015 Cloud On Mobile. All rights reserved.
+//  Created by Javi Alzueta on 1/5/15.
+//  Copyright (c) 2015 FillinGAPPs. All rights reserved.
 //
 
-#import "NewsTableViewCell.h"
+#import "FLGAllNewsTableViewCell.h"
 
 #import "Scoop.h"
 
-
-@interface NewsTableViewCell()
-@property (weak, nonatomic) IBOutlet UIImageView *imagen;
-@property (weak, nonatomic) IBOutlet UILabel *titleNews;
-@property (weak, nonatomic) IBOutlet UILabel *status;
-
-@end
-
-@implementation NewsTableViewCell
+@implementation FLGAllNewsTableViewCell
 
 + (NSString*) cellId{
     return NSStringFromClass(self);
@@ -37,7 +29,7 @@
     
     self.imagen.image = nil;
     self.titleNews.text = @" ";
-    self.status.text = @" ";
+    self.author.text = @" ";
 }
 
 - (void)setScoop:(Scoop *)scoop{
@@ -50,7 +42,7 @@
         self.imagen.image = [UIImage imageWithData:_scoop.image];
     }
     self.titleNews.text = _scoop.title;
-    self.status.text = _scoop.author;
+    self.author.text = _scoop.author;
 }
 
 @end

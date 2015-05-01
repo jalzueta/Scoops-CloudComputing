@@ -8,7 +8,8 @@
 
 #import "FLGNewScoopViewController.h"
 #import "FLGConstants.h"
-#import "FLGAllScoopCollectionViewController.h"
+#import "FLGAllScoopTableViewController.h"
+#import "FLGMyScoopsTableViewController.h"
 
 @import CoreLocation;
 
@@ -138,10 +139,15 @@
 }
 
 - (IBAction)myScoops:(id)sender {
+    FLGMyScoopsTableViewController *myScoopsVC = [[FLGMyScoopsTableViewController alloc] init];
+    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:myScoopsVC];
+    [self presentViewController:navVC
+                       animated:YES
+                     completion:nil];
 }
 
 - (IBAction)allScoops:(id)sender{
-    FLGAllScoopCollectionViewController *allScoopsVC = [[FLGAllScoopCollectionViewController alloc] init];
+    FLGAllScoopTableViewController *allScoopsVC = [[FLGAllScoopTableViewController alloc] init];
     UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:allScoopsVC];
     [self presentViewController:navVC
                        animated:YES

@@ -1,28 +1,30 @@
 //
-//  FLGAllScoopCollectionViewController.m
+//  FLGAllScoopTableViewController.m
 //  ScoopsFillingapps
 //
 //  Created by Javi Alzueta on 30/4/15.
 //  Copyright (c) 2015 FillinGAPPs. All rights reserved.
 //
 
-#import "FLGAllScoopCollectionViewController.h"
+#import "FLGAllScoopTableViewController.h"
 #import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
 #import "SharedKeys.h"
 #import "Scoop.h"
-#import "NewsTableViewCell.h"
+#import "FLGAllNewsTableViewCell.h"
+#import "FLGDetalleAllScoopViewController.h"
 
 #define CELLIDENT @"NewsTableViewCell"
 
-@interface FLGAllScoopCollectionViewController ()
+@interface FLGAllScoopTableViewController ()
 
 @property (strong, nonatomic) NSMutableArray *model;
+@property (strong, nonatomic) MSClient *client;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
-@implementation FLGAllScoopCollectionViewController
+@implementation FLGAllScoopTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,9 +32,13 @@
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
-                                                                                           target:self
-                                                                                           action:@selector(backToWriteNewScoop:)];
+    [self warmUpAzure];
+    
+//    if (self.client.currentUser) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
+                                                                                               target:self
+                                                                                               action:@selector(goBack:)];
+//    }
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -41,7 +47,7 @@
     [self registerNib];
     
     // Set height for all cells
-    self.tableView.rowHeight = [NewsTableViewCell height];
+    self.tableView.rowHeight = [FLGAllNewsTableViewCell height];
     
     self.model = [@[]mutableCopy];
     [self populateModelFromAzureWithAPI];
@@ -54,7 +60,7 @@
 
 #pragma mark - Actions
 
-- (void) backToWriteNewScoop: (id) sender{
+- (void) goBack: (id) sender{
     [self dismissViewControllerAnimated:YES
                              completion:nil];
 }
@@ -70,29 +76,42 @@
     return self.model.count;
 }
 
-
-#pragma mark - UITableViewDelegate
-
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NewsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:[NewsTableViewCell cellId] forIndexPath:indexPath];
+    FLGAllNewsTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:[FLGAllNewsTableViewCell cellId] forIndexPath:indexPath];
     
     cell.scoop = [self.model objectAtIndex:indexPath.row];
     
     return cell;
 }
 
-#pragma mark - modelo
+
+#pragma mark - UITableViewDelegate
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    Scoop *scoop = [self.model objectAtIndex:indexPath.row];
+    
+    FLGDetalleAllScoopViewController *detalleScoopVC = [[FLGDetalleAllScoopViewController alloc] initWithModel: scoop];
+    [self.navigationController pushViewController:detalleScoopVC
+                                         animated:YES];
+}
+
+#pragma mark - Azure
+
+- (void) warmUpAzure{
+    self.client = [MSClient clientWithApplicationURL:[NSURL URLWithString:AZUREMOBILESERVICE_ENDPOINT]
+                                      applicationKey:AZUREMOBILESERVICE_APPKEY];
+}
 
 - (void)populateModelFromAzureWithAPI{
     
-    MSClient *  client = [MSClient clientWithApplicationURL:[NSURL URLWithString:AZUREMOBILESERVICE_ENDPOINT]
-                                             applicationKey:AZUREMOBILESERVICE_APPKEY];
-    
     NSDictionary *parameters = @{@"orderedBy" : @"__updatedAt", @"status" : @"publicado"};
     
-    [client invokeAPI:@"readallpartialnews"
+    [self.client invokeAPI:@"readallpartialnews"
                       body:nil
                 HTTPMethod:@"GET"
                 parameters:parameters
@@ -107,7 +126,9 @@
                                                                   text:item[@"text"]
                                                                 author:item[@"author"]
                                                                  coord:CLLocationCoordinate2DMake([item[@"latitude"] doubleValue], [item[@"longitude"] doubleValue])
-                                                                status:item[@"status"]];
+                                                                status:item[@"status"]
+                                                                 score:item[@"score"]
+                                                               scoopId:item[@"id"]];
                             
                             [self.model addObject:scoop];
                         }
@@ -121,10 +142,10 @@
 #pragma mark - Utils
 -(void) registerNib{
     
-    UINib *nib = [UINib nibWithNibName:CELLIDENT
+    UINib *nib = [UINib nibWithNibName:[FLGAllNewsTableViewCell cellId]
                                 bundle:[NSBundle mainBundle]];
     [self.tableView registerNib:nib
-         forCellReuseIdentifier:[NewsTableViewCell cellId]];
+         forCellReuseIdentifier:[FLGAllNewsTableViewCell cellId]];
 }
 
 @end

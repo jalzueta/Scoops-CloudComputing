@@ -1,5 +1,5 @@
 //
-//  NewsCell.h
+//  FLGAllNewsTableViewCell.h
 //  Scoops
 //
 //  Created by Juan Antonio Martin Noguera on 19/04/15.
@@ -12,7 +12,7 @@
 
 @class Scoop;
 
-@interface NewsTableViewCell : UITableViewCell
+@interface FLGMyNewsTableViewCell : UITableViewCell
 
 + (NSString*) cellId;
 + (CGFloat) height;
