@@ -10,6 +10,7 @@
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "FLGConstants.h"
+#import "SharedKeys.h"
 #import "FLGAllScoopTableViewController.h"
 #import "FLGMyScoopsTableViewController.h"
 
@@ -26,6 +27,8 @@
 
 @property (strong, nonatomic) UIActionSheet *photoMenu;
 @property (strong, nonatomic) NSData *photoData;
+
+@property (strong, nonatomic) NSURLSessionDataTask *uploadTask;
 
 @end
 
@@ -190,6 +193,7 @@
                           @"Camera",
                           @"Roll",
                           @"Album",
+                          @"Delete",
                           nil];
     }
     [self.photoMenu showInView:[UIApplication sharedApplication].keyWindow];
@@ -228,25 +232,72 @@
     });
 }
 
+-(NSString *) randomStringWithLength: (int) len {
+    NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    NSMutableString *randomString = [NSMutableString stringWithCapacity: len];
+    
+    for (int i=0; i<len; i++) {
+        [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random_uniform([letters length])]];
+    }
+    
+    return randomString;
+}
+
+- (void) syncroPhotoImage{
+    if (self.photoData) {
+        self.photoView.image = [UIImage imageWithData:self.photoData];
+    }else{
+        self.photoView.image = [UIImage imageNamed:@"no_image"];
+    }
+}
+
+- (UIImage *) thumbnailFromImage: (UIImage *) originalImage{
+    CGSize destinationSize = CGSizeMake(160, 160);
+    UIGraphicsBeginImageContext(destinationSize);
+    [originalImage drawInRect:CGRectMake(0,0,destinationSize.width,destinationSize.height)];
+    UIImage *thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return thumbnailImage;
+}
+
 #pragma mark - Azure
 
 - (void)addScoopToAzure{
     MSTable *news = [self.client tableWithName:@"news"];
     
+    NSString *blobName = [self randomStringWithLength:20];
+    NSString *blobNameWithExtension = [NSString stringWithFormat:@"%@.jpg", blobName];
+    NSString *thumbBlobNameWithExtension = [NSString stringWithFormat:@"%@_thumb.jpg", blobName];
+    
     NSDictionary * scoop= @{@"title" : self.scoopTitleView.text,
                             @"text" : self.scoopTextView.text,
                             @"author" : self.scoopAuthorView.text,
                             @"authorID" : self.authorID,
+                            @"image" : blobNameWithExtension,
                             @"latitude" : @(self.location.coordinate.latitude),
                             @"longitude" : @(self.location.coordinate.longitude)};
     [news insert:scoop
       completion:^(NSDictionary *item, NSError *error) {
           
-          if (error) {
+          if (!error) {
+              NSLog(@"OK");
+              
+              if (self.photoData) { // Si se ha cargado una photo, se sube al server
+                  NSString *containerName = self.client.currentUser.userId;
+                  
+                  // se lanza la carga de la imagen grande
+                  [self readBlobURLForBlobName:blobNameWithExtension inContainer:containerName forImage:self.photoView.image];
+                  
+                  // se lanza la carga de la imagen thumb
+                  [self readBlobURLForBlobName:thumbBlobNameWithExtension inContainer:containerName forImage:[self thumbnailFromImage:self.photoView.image]];
+              }
+              
+          } else {
               switch (error.code) {
                   case -1302:{
                       UIAlertView *noDataAlert = [[UIAlertView alloc] initWithTitle:@"Error!"
-                                                                            message:@"Los campos \"Titulo\" y \"Noticia\" son obligatorios. Por favor introduzca el contenido."
+                                                                            message:@"Por favor, comprueba que los campos \"Titulo\" y \"Noticia\" han sido completados."
                                                                            delegate:self
                                                                   cancelButtonTitle:@"OK"
                                                                   otherButtonTitles: nil];
@@ -258,10 +309,61 @@
                       break;
               }
               NSLog(@"Error %@", error);
-          } else {
-              NSLog(@"OK");
           }
       }];
+}
+
+- (void) readBlobURLForBlobName: (NSString *) blobName inContainer: (NSString *)containerName forImage: (UIImage *) image{
+    NSDictionary *parameters = @{@"containerName" : containerName, @"blobName" : blobName};
+    
+    [self.client invokeAPI:@"getbloburlfromauthorscontainer"
+                      body:nil
+                HTTPMethod:@"GET"
+                parameters:parameters
+                   headers:nil
+                completion:^(id result, NSHTTPURLResponse *response, NSError *error) {
+                    if (!error) {
+                        NSLog(@"resultado --> %@", result);
+                        
+                        NSData *imageData = UIImageJPEGRepresentation(image, 0.6);
+                        [self uploadPhotoToAzureStorageWithData:imageData toURL:[NSURL URLWithString:result[@"sasUrl"]]];
+                    }else{
+                        NSLog(@"error --> %@", error);
+                    }
+                }];
+}
+
+- (void) uploadPhotoToAzureStorageWithData: (NSData *) imageData toURL: (NSURL *) sasURL{
+    
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    config.HTTPAdditionalHeaders = @{@"api-key" : AZUREMOBILESERVICE_APPKEY};
+    
+    NSURLSession *upLoadSession = [NSURLSession sessionWithConfiguration:config
+                                                                delegate:nil
+                                                           delegateQueue:nil];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:sasURL
+                                                                cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                            timeoutInterval:60.0];
+    
+    [request setHTTPMethod:@"PUT"];
+    [request addValue:@"image/jpeg" forHTTPHeaderField:@"Content-Type"];
+    
+    [request setHTTPBody:imageData];
+    
+    self.uploadTask = [upLoadSession dataTaskWithRequest:request
+                                       completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                                           if (!error) {
+                                               NSLog(@"Response: %@", response);
+                                           } else {
+                                               // alert for error saving / updating note
+                                               NSLog(@"Error: %@", error);
+                                           }
+                                           [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+                                       }];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    [self.uploadTask resume];
 }
 
 #pragma mark - Location
@@ -318,14 +420,19 @@
     switch (buttonIndex) {
         case 0:
             source = CAMERA;
+            [self takePicture: source];
             break;
         case 1:
             source = ROLL;
+            [self takePicture: source];
             break;
         case 2:
             source = ALBUM;
+            [self takePicture: source];
             break;
         default:
+            self.photoData = nil;
+            [self syncroPhotoImage];
             break;
     }
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
@@ -335,7 +442,6 @@
                                                                                 value:nil];
     [tracker send: [dictBuilder build]];
     
-    [self takePicture: source];
 }
 
     
@@ -392,9 +498,7 @@
     
     // La guardo en el modelo
     self.photoData = UIImageJPEGRepresentation(img, 1);
-    if (self.photoData) {
-        self.photoView.image = img;
-    }
+    [self syncroPhotoImage];
     
     // Quito de enmedio al picker
     [self dismissViewControllerAnimated:YES

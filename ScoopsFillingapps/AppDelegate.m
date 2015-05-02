@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "GAI.h"
 #import "GAITracker.h"
+#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
 #import "SharedKeys.h"
 #import "FLGLoginViewController.h"
 
@@ -22,6 +23,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    [self registerNotificationRemotes];
     
     // -------------------- Google Analytics ---------------------------------
     // Configurar comportamiento
@@ -66,6 +69,48 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark - push notification para Azure
 
+- (void)registerNotificationRemotes{
+    
+    UIApplication *application = [UIApplication sharedApplication];
+    
+    
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge|UIUserNotificationTypeSound |UIUserNotificationTypeAlert )
+                                                                             categories:nil];
+    
+    [application registerUserNotificationSettings:settings];
+    
+}
+
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    
+    MSClient *client = [MSClient clientWithApplicationURL:[NSURL URLWithString:AZUREMOBILESERVICE_ENDPOINT] applicationKey:AZUREMOBILESERVICE_APPKEY];
+    
+    [client.push registerNativeWithDeviceToken:deviceToken tags:@[@"Mi etiqueta"] completion:^(NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error registering for notifications: %@", error);
+        }
+    }];
+    
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    NSLog(@"Error -> %@", error);
+}
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    
+    NSLog(@"%@", userInfo);
+    NSString *msg = userInfo[@"aps"][@"alert"];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Titulo de la Notificación"
+                                                    message:msg
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil, nil];
+    [alert show];
+    
+}
 
 @end
