@@ -198,7 +198,7 @@
         }
     }];
     
-    [self addAuthorToAzure];
+    //[self addAuthorToAzure];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [self hideLoadingView];
