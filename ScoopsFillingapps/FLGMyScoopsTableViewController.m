@@ -156,13 +156,15 @@
                    for (id item in result) {
                        NSLog(@"item -> %@", item);
                        Scoop *scoop = [[Scoop alloc]initWithTitle:item[@"title"]
-                                                            photo:nil
+                                                        photoData:nil
                                                              text:item[@"text"]
                                                            author:item[@"author"]
+                                                         authorID:item[@"authorID"]
                                                             coord:CLLocationCoordinate2DMake([item[@"latitude"] doubleValue], [item[@"longitude"] doubleValue])
                                                            status:item[@"status"]
                                                             score:[item[@"score"] floatValue]
-                                                          scoopId:item[@"id"]];
+                                                          scoopId:item[@"id"]
+                                                        photoName:item[@"image"]];
                        
                        [self.model addObject:scoop];
                    }
@@ -204,11 +206,16 @@
 
 - (void) detalleMyScoopviewController:(FLGDetalleMyScoopViewController *)detalleMyScoopviewController didPublishNewWithId:(NSString *)scoopId{
     
-    for (Scoop *scoop in self.model) {
-        if ([scoop.scoopId isEqualToString:scoopId]) {
-            [self.model removeObject:scoop];
-            [self.tableView reloadData];
+    int indexToRemove = -1;
+    for (int i=0; i<self.model.count; i++) {
+        if ([[[self.model objectAtIndex:i] scoopId] isEqualToString:scoopId]) {
+            indexToRemove = i;
+            break;
         }
+    }
+    if (indexToRemove > 0) {
+        [self.model removeObjectAtIndex:indexToRemove];
+        [self.tableView reloadData];
     }
 }
 

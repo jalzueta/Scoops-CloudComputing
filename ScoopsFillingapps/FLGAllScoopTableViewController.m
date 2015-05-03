@@ -35,7 +35,7 @@
     
     [self warmUpAzure];
     
-    if (self.client.currentUser) {
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"writterMode"] isEqualToString:@"YES"]) {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
                                                   initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
                                                   target:self
@@ -143,13 +143,15 @@
                         for (id item in result) {
                             NSLog(@"item -> %@", item);
                             Scoop *scoop = [[Scoop alloc]initWithTitle:item[@"title"]
-                                                                 photo:nil
+                                                             photoData:nil
                                                                   text:item[@"text"]
                                                                 author:item[@"author"]
+                                                              authorID:item[@"authorID"]
                                                                  coord:CLLocationCoordinate2DMake([item[@"latitude"] doubleValue], [item[@"longitude"] doubleValue])
                                                                 status:item[@"status"]
                                                                  score:[item[@"score"] floatValue]
-                                                               scoopId:item[@"id"]];
+                                                               scoopId:item[@"id"]
+                                                             photoName:item[@"image"]];
                             
                             [self.model addObject:scoop];
                         }

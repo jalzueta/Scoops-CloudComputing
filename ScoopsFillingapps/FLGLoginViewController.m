@@ -22,6 +22,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *skipButton;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIControl *loadingVeloView;
+@property (weak, nonatomic) IBOutlet UIView *loadingView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivityView;
 
 @property (strong, nonatomic) MSClient *client;
 @property (strong, nonatomic) NSString *userFBId;
@@ -53,6 +56,9 @@
     
     self.skipButton.layer.cornerRadius = 5;
     self.loginButton.layer.cornerRadius = 5;
+    self.loadingView.layer.cornerRadius = 10;
+    
+    [self hideLoadingView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,11 +89,25 @@
     }];
 }
 
+#pragma mark - Utils
+- (void) hideLoadingView{
+    self.loadingVeloView.hidden = YES;
+    [self.loadingActivityView stopAnimating];
+}
+
+- (void) showLoadingView{
+    [self.loadingActivityView startAnimating];
+    self.loadingVeloView.hidden = NO;
+}
+
 #pragma mark - Login
 
 - (void) loginAppInViewController:(UIViewController *)controller withCompletion:(completeBlock)bloque{
     
     [self loadUserAuthInfo];
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [self showLoadingView];
     
     if (self.client.currentUser){
         [self.client invokeAPI:@"getCurrentUserInfo"
@@ -115,6 +135,13 @@
                        if (error) {
                            NSLog(@"Error en el login : %@", error);
                            bloque(nil);
+                           [[[UIAlertView alloc] initWithTitle:@"Error!"
+                                                       message:@"No se ha podido iniciar sesión. Por favor, inténtalo de nuevo."
+                                                      delegate:nil
+                                             cancelButtonTitle:@"OK"
+                                             otherButtonTitles: nil] show];
+                           [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+                           [self hideLoadingView];
                        } else {
                            NSLog(@"user -> %@", user);
                            
@@ -162,6 +189,10 @@
 
 - (void) launchWritterModeWithUser: (id) userInfo{
     
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [self hideLoadingView];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"writterMode"];
     [self askForLocationPermissions];
 }
 
@@ -187,6 +218,10 @@
 }
 
 - (void) launchReaderMode{
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"writterMode"];
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     GAIDictionaryBuilder *dictBuilder = [GAIDictionaryBuilder createEventWithCategory:@"login"

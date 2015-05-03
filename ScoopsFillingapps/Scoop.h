@@ -13,23 +13,27 @@
 @interface Scoop : NSObject
 
 - (id) initWithTitle:(NSString *) aTitle
-               photo:(NSData *) aPhoto
+           photoData:(NSData *) aPhotoData
                 text:(NSString *) aText
               author:(NSString *) anAuthor
+            authorID:(NSString *) anAuthorID
                coord:(CLLocationCoordinate2D) aCoord
-              status: (NSString *) aStatus
-              score: (CGFloat) aScore
-              scoopId: (NSString *) scoopId;
+              status:(NSString *) aStatus
+               score:(CGFloat) aScore
+             scoopId:(NSString *) aScoopId
+        photoName:(NSString *) aPhotoName;
 
 @property (readonly) NSString *title;
 @property (readonly) NSString *text;
 @property (readonly) NSString *author;
+@property (readonly) NSString *authorID;
 @property (readonly) CLLocationCoordinate2D coors;
-@property (readonly) NSData *image;
+@property (readonly) NSData *photoData;
 @property (readonly) NSDate *dateCreated;
 @property (strong, nonatomic) NSString *status;
 @property (readonly) NSString *scoopId;
 @property (nonatomic) CGFloat score;
+@property (readonly) NSString *photoName;
 
 
 @end

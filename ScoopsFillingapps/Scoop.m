@@ -23,24 +23,28 @@
 @implementation Scoop
 
 - (id) initWithTitle:(NSString *) aTitle
-          photo:(NSData *) aPhoto
-             text:(NSString *) aText
-          author:(NSString *) anAuthor
+           photoData:(NSData *) aPhotoData
+                text:(NSString *) aText
+              author:(NSString *) anAuthor
+            authorID:(NSString *) anAuthorID
                coord:(CLLocationCoordinate2D) aCoord
               status:(NSString *) aStatus
                score: (CGFloat) aScore
-             scoopId: (NSString *) scoopId{
+             scoopId: (NSString *) aScoopId
+           photoName:(NSString *) aPhotoName{
     
     if (self = [super init]) {
         _title = aTitle;
         _text = aText;
         _author = anAuthor;
+        _authorID = anAuthorID;
         _coors = aCoord;
-        _image = aPhoto;
+        _photoData = aPhotoData;
         _dateCreated = [NSDate date];
         _status = aStatus;
         _score = aScore;
-        _scoopId = scoopId;
+        _scoopId = aScoopId;
+        _photoName = aPhotoName;
     }
     return self;
 }

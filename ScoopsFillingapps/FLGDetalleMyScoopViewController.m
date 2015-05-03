@@ -47,6 +47,8 @@
     
     [super viewWillAppear:animated];
     self.screenName = @"myScoopsDetail";
+    
+    [self hideLoadingView];
 }
 
 
@@ -64,6 +66,9 @@
 
 - (void)populateModelFromAzureWithAPI{
     
+    [self showLoadingView];
+    [self.activityView startAnimating];
+    
     NSDictionary *parameters = @{@"idNoticia" : _scoop.scoopId};
     
     [self.client invokeAPI:@"readonefullnew"
@@ -77,24 +82,34 @@
                    for (id item in result) {
                        NSLog(@"item -> %@", item);
                        Scoop *scoop = [[Scoop alloc]initWithTitle:item[@"title"]
-                                                            photo:nil
+                                                        photoData:nil
                                                              text:item[@"text"]
                                                            author:item[@"author"]
+                                                        authorID:item[@"authorID"]
                                                             coord:CLLocationCoordinate2DMake([item[@"latitude"] doubleValue], [item[@"longitude"] doubleValue])
                                                            status:item[@"status"]
                                                             score:[item[@"score"] floatValue]
-                                                          scoopId:item[@"id"]];
+                                                          scoopId:item[@"id"]
+                                                        photoName:item[@"image"]];
                        
                        self.scoop = scoop;
+                       NSString *blobName = scoop.photoName;
+                       NSString *containerName = item[@"authorID"];
+                       [self readBlobURLForBlobName:blobName inContainer:containerName];
                    }
                    [self syncViewToModel];
                }else{
                    NSLog(@"error --> %@", error);
+                   [self.activityView stopAnimating];
                }
+               [self hideLoadingView];
            }];
 }
 
 - (void)sendStatusToAzureWithAPI{
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [self showLoadingView];
     
     NSString *newStatus = @"pending";
     NSDictionary *parameters = @{@"idNoticia" : _scoop.scoopId, @"status" : newStatus};
@@ -111,10 +126,62 @@
                    [self syncViewToModel];
                    [self.delegate detalleMyScoopviewController:self
                                            didPublishNewWithId:self.scoop.scoopId];
+                   
+                   [[[UIAlertView alloc] initWithTitle:@"Genial!"
+                                               message:@"Tu noticia ha sido publicada. En un par de horas estará disponible para los lectores."
+                                              delegate:nil
+                                     cancelButtonTitle:@"OK"
+                                     otherButtonTitles: nil] show];
                }else{
                    NSLog(@"error --> %@", error);
                }
+               [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+               [self hideLoadingView];
            }];
+}
+
+- (void) readBlobURLForBlobName: (NSString *) blobName inContainer: (NSString *)containerName {
+    NSDictionary *parameters = @{@"containerName" : containerName, @"blobName" : blobName};
+    
+    [self.client invokeAPI:@"getbloburlfromauthorscontainer"
+                      body:nil
+                HTTPMethod:@"GET"
+                parameters:parameters
+                   headers:nil
+                completion:^(id result, NSHTTPURLResponse *response, NSError *error) {
+                    if (!error) {
+                        NSLog(@"resultado --> %@", result);
+                        [self handleSaSURLToDownload:[NSURL URLWithString:result[@"sasUrl"]] completionHandleSaS:^(UIImage* image, NSError *error) {
+                            if (!error) {
+                                self.imageView.image = image;
+                            }else{
+                                self.imageView.image = [UIImage imageNamed:@"no_image"];
+                            }
+                            [self.activityView stopAnimating];
+                        }];
+                    }else{
+                        NSLog(@"error --> %@", error);
+                    }
+                }];
+}
+
+- (void)handleSaSURLToDownload:(NSURL *)theUrl completionHandleSaS:(void (^)(id result, NSError *error))completion{
+    
+    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:theUrl];
+    
+    [request setHTTPMethod:@"GET"];
+    [request setValue:@"image/jpeg" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionDownloadTask * downloadTask = [[NSURLSession sharedSession]downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+        
+        if (!error) {
+            
+            NSLog(@"resultado --> %@", response);
+            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
+            completion(image, error);
+        }
+    }];
+    [downloadTask resume];
 }
 
 #pragma mark - Actions
@@ -143,6 +210,7 @@
     self.textView.layer.cornerRadius = 10;
     self.imageView.layer.cornerRadius = 10;
     self.imageView.layer.masksToBounds = YES;
+    self.loadingView.layer.cornerRadius = 10;
     
     self.publicarButton.hidden = YES;
 }
@@ -156,6 +224,16 @@
     self.scoreView.text = [NSString stringWithFormat:@"%.2f", self.scoop.score];
     
     self.publicarButton.hidden = ![self.scoop.status isEqualToString:@"notPublished"];
+}
+
+- (void) hideLoadingView{
+    self.loadingVeloView.hidden = YES;
+    [self.loadingActivityView stopAnimating];
+}
+
+- (void) showLoadingView{
+    [self.loadingActivityView startAnimating];
+    self.loadingVeloView.hidden = NO;
 }
 
 #pragma mark - keyboard

@@ -26,6 +26,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *statusView;
 @property (weak, nonatomic) IBOutlet UIButton *publicarButton;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
+@property (weak, nonatomic) IBOutlet UIControl *loadingVeloView;
+@property (weak, nonatomic) IBOutlet UIView *loadingView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivityView;
 
 @property (nonatomic, strong) Scoop *scoop;
 @property (weak, nonatomic) id<FLGDetalleMyScoopViewControllerDelegate> delegate;

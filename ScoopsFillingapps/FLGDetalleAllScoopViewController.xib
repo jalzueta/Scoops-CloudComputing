@@ -6,8 +6,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FLGDetalleAllScoopViewController">
             <connections>
+                <outlet property="activityView" destination="vQm-rl-4kf" id="ZOT-qc-7C3"/>
                 <outlet property="authorView" destination="Qle-pP-Ei9" id="ROU-IV-CK9"/>
                 <outlet property="imageView" destination="y7x-lv-YIB" id="fwB-0g-5g4"/>
+                <outlet property="loadingActivityView" destination="jmc-Ot-b2j" id="8sV-2g-wz3"/>
+                <outlet property="loadingVeloView" destination="DRa-qU-2wv" id="0Nc-lK-Acu"/>
+                <outlet property="loadingView" destination="Nt9-xu-d5X" id="K5k-PU-roe"/>
                 <outlet property="puntuacionMediaView" destination="YwW-Dk-Unk" id="PdS-P3-Vog"/>
                 <outlet property="scoreView" destination="QTl-Vm-JX5" id="WdW-YI-uwQ"/>
                 <outlet property="textView" destination="y1k-fq-RGB" id="eq6-k5-5d2"/>
@@ -38,6 +42,11 @@
                     <rect key="frame" x="10" y="189" width="300" height="371"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" id="vQm-rl-4kf">
+                    <rect key="frame" x="142" y="356" width="37" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                </activityIndicatorView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" id="y1k-fq-RGB">
                     <rect key="frame" x="10" y="189" width="300" height="371"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -82,6 +91,24 @@
                         <action selector="sendScore:" destination="-1" eventType="touchUpInside" id="Q8F-4H-2qv"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" id="DRa-qU-2wv" userLabel="View - loading" customClass="UIControl">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" id="Nt9-xu-d5X">
+                            <rect key="frame" x="110" y="234" width="100" height="100"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" id="jmc-Ot-b2j">
+                                    <rect key="frame" x="32" y="31" width="37" height="37"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.60999999999999999" colorSpace="calibratedWhite"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <connections>

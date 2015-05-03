@@ -38,10 +38,16 @@
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="4eb-tP-FlL">
+                        <rect key="frame" x="37" y="37" width="20" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </activityIndicatorView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             </tableViewCellContentView>
             <connections>
+                <outlet property="activityView" destination="4eb-tP-FlL" id="aip-Pw-waO"/>
                 <outlet property="imagen" destination="A0Q-Sy-FZj" id="xSM-dT-ZNK"/>
                 <outlet property="score" destination="GZ5-0E-vbH" id="ZLz-M2-xOn"/>
                 <outlet property="status" destination="YSW-FN-kxg" id="LLL-p4-RGd"/>

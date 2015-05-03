@@ -6,6 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FLGNewScoopViewController">
             <connections>
+                <outlet property="loadingActivityView" destination="I5v-N1-maN" id="EIj-lL-c0L"/>
+                <outlet property="loadingVeloView" destination="ii9-WF-vx2" id="K0f-D5-Y5b"/>
+                <outlet property="loadingView" destination="JtF-jh-VYi" id="Qed-lz-a3h"/>
                 <outlet property="photoView" destination="3fn-Fp-Ebc" id="f9z-At-gPK"/>
                 <outlet property="scoopAuthorImageView" destination="AlY-DF-5xG" id="ObJ-fE-Vz4"/>
                 <outlet property="scoopAuthorView" destination="d02-kC-eVm" id="6zC-U5-qHg"/>
@@ -99,6 +102,24 @@
                         </barButtonItem>
                     </items>
                 </toolbar>
+                <view contentMode="scaleToFill" id="ii9-WF-vx2" userLabel="View - loading" customClass="UIControl">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" id="JtF-jh-VYi">
+                            <rect key="frame" x="110" y="234" width="100" height="100"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" id="I5v-N1-maN">
+                                    <rect key="frame" x="32" y="31" width="37" height="37"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.60999999999999999" colorSpace="calibratedWhite"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <connections>

@@ -64,6 +64,8 @@
     [self configAuthor];
     
     [self getUserLocation];
+    
+    [self hideLoadingView];
 }
 
 - (void) viewDidAppear:(BOOL)animated{
@@ -208,6 +210,7 @@
     self.scoopTextView.layer.cornerRadius = 10;
     self.photoView.layer.cornerRadius = 10;
     self.photoView.layer.masksToBounds = YES;
+    self.loadingView.layer.cornerRadius = 10;
 }
 
 - (void) configAuthor{
@@ -216,7 +219,6 @@
     self.scoopAuthorView.text = self.userInfo[@"name"];
     self.authorID = self.userInfo[@"id"];
 }
-
 
 -(void)setProfilePicture:(NSURL *)profilePicture{
     
@@ -230,6 +232,16 @@
             self.scoopAuthorImageView.clipsToBounds = YES;
         });
     });
+}
+
+- (void) hideLoadingView{
+    self.loadingVeloView.hidden = YES;
+    [self.loadingActivityView stopAnimating];
+}
+
+- (void) showLoadingView{
+    [self.loadingActivityView startAnimating];
+    self.loadingVeloView.hidden = NO;
 }
 
 -(NSString *) randomStringWithLength: (int) len {
@@ -252,7 +264,10 @@
 }
 
 - (UIImage *) thumbnailFromImage: (UIImage *) originalImage{
-    CGSize destinationSize = CGSizeMake(160, 160);
+    CGFloat scale = originalImage.size.height/originalImage.size.width;
+    CGFloat destinationWidth = 160;
+    CGFloat destinationHeight = destinationWidth * scale;
+    CGSize destinationSize = CGSizeMake(destinationWidth, destinationHeight);
     UIGraphicsBeginImageContext(destinationSize);
     [originalImage drawInRect:CGRectMake(0,0,destinationSize.width,destinationSize.height)];
     UIImage *thumbnailImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -264,6 +279,10 @@
 #pragma mark - Azure
 
 - (void)addScoopToAzure{
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [self showLoadingView];
+    
     MSTable *news = [self.client tableWithName:@"news"];
     
     NSString *blobName = [self randomStringWithLength:20];
@@ -293,6 +312,12 @@
                   [self readBlobURLForBlobName:thumbBlobNameWithExtension inContainer:containerName forImage:[self thumbnailFromImage:self.photoView.image]];
               }
               
+              [[[UIAlertView alloc] initWithTitle:@"Genial!"
+                                          message:@"Tu noticia se ha enviado correctamente"
+                                         delegate:nil
+                                cancelButtonTitle:@"OK"
+                                otherButtonTitles: nil] show];
+              
           } else {
               switch (error.code) {
                   case -1302:{
@@ -309,12 +334,16 @@
                       break;
               }
               NSLog(@"Error %@", error);
+              [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
           }
+          [self hideLoadingView];
       }];
 }
 
 - (void) readBlobURLForBlobName: (NSString *) blobName inContainer: (NSString *)containerName forImage: (UIImage *) image{
     NSDictionary *parameters = @{@"containerName" : containerName, @"blobName" : blobName};
+    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     [self.client invokeAPI:@"getbloburlfromauthorscontainer"
                       body:nil
@@ -329,6 +358,7 @@
                         [self uploadPhotoToAzureStorageWithData:imageData toURL:[NSURL URLWithString:result[@"sasUrl"]]];
                     }else{
                         NSLog(@"error --> %@", error);
+                        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                     }
                 }];
 }

@@ -19,6 +19,7 @@
 		599455EC1AF431F8001E925E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599455EB1AF431F8001E925E /* SystemConfiguration.framework */; };
 		599455EE1AF43204001E925E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 599455ED1AF43204001E925E /* libsqlite3.dylib */; };
 		599455F01AF4320A001E925E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 599455EF1AF4320A001E925E /* libz.dylib */; };
+		599455F31AF59060001E925E /* newspapers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 599455F21AF59060001E925E /* newspapers.jpg */; };
 		59C54CC71AF1772900A8CFF3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C54CC61AF1772900A8CFF3 /* main.m */; };
 		59C54CCA1AF1772900A8CFF3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 59C54CC91AF1772900A8CFF3 /* AppDelegate.m */; };
 		59C54CCC1AF1772900A8CFF3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59C54CCB1AF1772900A8CFF3 /* Images.xcassets */; };
@@ -84,6 +85,7 @@
 		599455EB1AF431F8001E925E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		599455ED1AF43204001E925E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		599455EF1AF4320A001E925E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		599455F21AF59060001E925E /* newspapers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = newspapers.jpg; sourceTree = "<group>"; };
 		59C54CC11AF1772900A8CFF3 /* ScoopsFillingapps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScoopsFillingapps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59C54CC51AF1772900A8CFF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59C54CC61AF1772900A8CFF3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 		59C54CF61AF2026700A8CFF3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				599455F21AF59060001E925E /* newspapers.jpg */,
 				59C54D0E1AF2329B00A8CFF3 /* no_image.png */,
 				59C54D021AF2317A00A8CFF3 /* album.png */,
 				59C54D031AF2317A00A8CFF3 /* album@2x.png */,
@@ -410,6 +413,7 @@
 				59C54CFB1AF2028200A8CFF3 /* user_icon@2x.png in Resources */,
 				59C54D211AF2E0B600A8CFF3 /* FLGMyScoopsTableViewController.xib in Resources */,
 				59C54D0A1AF2317A00A8CFF3 /* album@3x.png in Resources */,
+				599455F31AF59060001E925E /* newspapers.jpg in Resources */,
 				59C54CFA1AF2028200A8CFF3 /* user_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

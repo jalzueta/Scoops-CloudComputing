@@ -18,6 +18,9 @@
 @property (weak, nonatomic) IBOutlet UITextView *scoopTextView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBarView;
 @property (weak, nonatomic) IBOutlet UIImageView *photoView;
+@property (weak, nonatomic) IBOutlet UIControl *loadingVeloView;
+@property (weak, nonatomic) IBOutlet UIView *loadingView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivityView;
 
 - (id) initWithUser: (id) userInfo
              client: (MSClient *) client;
