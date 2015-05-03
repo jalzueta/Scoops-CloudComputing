@@ -6,6 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FLGMyScoopsTableViewController">
             <connections>
+                <outlet property="loadingActivityView" destination="Dp1-QF-LiO" id="ur8-Es-uam"/>
+                <outlet property="loadingVeloView" destination="l3j-tt-bpp" id="hYG-vW-DXO"/>
+                <outlet property="loadingView" destination="XOp-7M-7hO" id="7Ig-mD-2OK"/>
                 <outlet property="tableView" destination="QVO-La-tNo" id="Hhj-Yz-DaU"/>
                 <outlet property="view" destination="Wtq-fD-m2q" id="14m-Cw-B4X"/>
             </connections>
@@ -39,6 +42,24 @@
                         </segmentedControl>
                     </subviews>
                     <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <view contentMode="scaleToFill" id="l3j-tt-bpp" userLabel="View - loading" customClass="UIControl">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" id="XOp-7M-7hO">
+                            <rect key="frame" x="110" y="234" width="100" height="100"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" id="Dp1-QF-LiO">
+                                    <rect key="frame" x="32" y="31" width="37" height="37"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </activityIndicatorView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.60999999999999999" colorSpace="calibratedWhite"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

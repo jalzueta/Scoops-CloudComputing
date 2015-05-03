@@ -23,6 +23,9 @@
 @property (strong, nonatomic) NSMutableArray *model;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIControl *loadingVeloView;
+@property (weak, nonatomic) IBOutlet UIView *loadingView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivityView;
 
 @end
 
@@ -52,13 +55,17 @@
     self.tableView.rowHeight = [FLGMyNewsTableViewCell height];
     
     self.model = [@[]mutableCopy];
-    [self populateModelWithMyPublishNews];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
     self.screenName = @"myScoops";
+    
+    self.loadingView.layer.cornerRadius = 10;
+    
+    [self hideLoadingView];
+    [self populateModelWithMyPublishNews];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -140,6 +147,9 @@
 
 - (void) populateModelWithStatus: (NSString *) status{
     
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [self showLoadingView];
+    
     [self.model removeAllObjects];
     
     NSString *authorID = [[NSUserDefaults standardUserDefaults]objectForKey:@"userID"];
@@ -172,10 +182,23 @@
                }else{
                    NSLog(@"error --> %@", error);
                }
+               [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+               [self hideLoadingView];
            }];
 }
 
 #pragma mark - Utils
+
+- (void) hideLoadingView{
+    self.loadingVeloView.hidden = YES;
+    [self.loadingActivityView stopAnimating];
+}
+
+- (void) showLoadingView{
+    [self.loadingActivityView startAnimating];
+    self.loadingVeloView.hidden = NO;
+}
+
 -(void) registerNib{
     
     UINib *nib = [UINib nibWithNibName:[FLGMyNewsTableViewCell cellId]

@@ -23,6 +23,9 @@
 @property (strong, nonatomic) MSClient *client;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIControl *loadingVeloView;
+@property (weak, nonatomic) IBOutlet UIView *loadingView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivityView;
 
 @end
 
@@ -52,13 +55,17 @@
     self.tableView.rowHeight = [FLGAllNewsTableViewCell height];
     
     self.model = [@[]mutableCopy];
-    [self populateModelFromAzureWithAPI];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
     self.screenName = @"allScoops";
+    
+    self.loadingView.layer.cornerRadius = 10;
+    
+    [self hideLoadingView];
+    [self populateModelFromAzureWithAPI];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -130,6 +137,9 @@
 
 - (void)populateModelFromAzureWithAPI{
     
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [self showLoadingView];
+    
     NSDictionary *parameters = @{@"orderedBy" : @"__updatedAt", @"status" : @"published"};
     
     [self.client invokeAPI:@"readallpartialnews"
@@ -159,10 +169,22 @@
                     }else{
                         NSLog(@"error --> %@", error);
                     }
+                    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+                    [self hideLoadingView];
                 }];
 }
 
 #pragma mark - Utils
+- (void) hideLoadingView{
+    self.loadingVeloView.hidden = YES;
+    [self.loadingActivityView stopAnimating];
+}
+
+- (void) showLoadingView{
+    [self.loadingActivityView startAnimating];
+    self.loadingVeloView.hidden = NO;
+}
+
 -(void) registerNib{
     
     UINib *nib = [UINib nibWithNibName:[FLGAllNewsTableViewCell cellId]

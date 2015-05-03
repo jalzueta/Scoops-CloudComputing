@@ -290,25 +290,25 @@
     
     NSString *userID = [[NSUserDefaults standardUserDefaults]objectForKey:@"userID"];
     NSData *deviceToken = [[NSUserDefaults standardUserDefaults]objectForKey:@"deviceToken"];
-    NSString *deviceTokenString = [[NSString alloc] initWithData:deviceToken encoding:NSUTF8StringEncoding];
-    if (!deviceTokenString) {
-        deviceTokenString = [NSString stringWithUTF8String:[deviceToken bytes]];
+    
+    NSRange range = NSMakeRange(1, ([[deviceToken description] length] - 2));
+    NSString *deviceTokenString = [[deviceToken description] substringWithRange:range];
+    
+    if (deviceTokenString && userID) {
+        NSDictionary * author= @{@"authorid" : userID,
+                                 @"notificationsid" : deviceTokenString};
+        
+        [authors insert:author
+             completion:^(NSDictionary *item, NSError *error) {
+                 
+                 if (!error) {
+                     NSLog(@"OK");
+                     
+                 } else {
+                     NSLog(@"Error %@", error);
+                 }
+             }];
     }
-    
-    NSDictionary * author= @{@"authorid" : userID,
-                            @"notificationsid" : @"estoyEnEllo"};
-    
-    [authors insert:author
-      completion:^(NSDictionary *item, NSError *error) {
-          
-          if (!error) {
-              NSLog(@"OK");
-              
-          } else {
-              
-              NSLog(@"Error %@", error);
-          }
-      }];
 }
 
 
