@@ -189,6 +189,17 @@
 
 - (void) launchWritterModeWithUser: (id) userInfo{
     
+    NSData *deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
+    NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"userID"];
+    
+    [self.client.push registerNativeWithDeviceToken:deviceToken tags:@[userID] completion:^(NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error registering for notifications: %@", error);
+        }
+    }];
+    
+    [self addAuthorToAzure];
+    
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [self hideLoadingView];
     
@@ -271,39 +282,35 @@
 
 #pragma mark - APIs personalizadas
 
-- (void) readOneNew{
+- (void)addAuthorToAzure{
     
-    NSDictionary *parameters = @{@"idNoticia" : @"A412EFE9-6431-49E5-9F39-CDC6E1CD8F9B"};
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
-    [self.client invokeAPI:@"readonenew"
-                      body:nil
-                HTTPMethod:@"GET" parameters:parameters headers:nil completion:^(id result, NSHTTPURLResponse *response, NSError *error) {
-                    if (!error) {
-                        NSLog(@"resultado --> %@", result);
-                    }else{
-                        NSLog(@"error --> %@", error);
-                    }
-                }];
+    MSTable *authors = [self.client tableWithName:@"authors"];
+    
+    NSString *userID = [[NSUserDefaults standardUserDefaults]objectForKey:@"userID"];
+    NSData *deviceToken = [[NSUserDefaults standardUserDefaults]objectForKey:@"deviceToken"];
+    NSString *deviceTokenString = [[NSString alloc] initWithData:deviceToken encoding:NSUTF8StringEncoding];
+    if (!deviceTokenString) {
+        deviceTokenString = [NSString stringWithUTF8String:[deviceToken bytes]];
+    }
+    
+    NSDictionary * author= @{@"authorid" : userID,
+                            @"notificationsid" : @"estoyEnEllo"};
+    
+    [authors insert:author
+      completion:^(NSDictionary *item, NSError *error) {
+          
+          if (!error) {
+              NSLog(@"OK");
+              
+          } else {
+              
+              NSLog(@"Error %@", error);
+          }
+      }];
 }
 
-- (void) obtenerURLBlobFromAzure{
-    
-    NSDictionary *parameters = @{@"blobName" : @"nombre_del_blob"};
-    
-    [self.client invokeAPI:@"dameimagendestorage"
-                      body:nil
-                HTTPMethod:@"GET" parameters:parameters
-                   headers:nil
-                completion:^(id result, NSHTTPURLResponse *response, NSError *error) {
-                    if (!error) {
-                        NSLog(@"resultado --> %@", result);
-                    }else{
-                        NSLog(@"error --> %@", error);
-                    }
-                }];
-}
-
-// Para subir un blob, obtenemos la URL y subimos con NSURLConnection
 
 
 @end

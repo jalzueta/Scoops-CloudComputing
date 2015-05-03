@@ -134,6 +134,11 @@
                                      otherButtonTitles: nil] show];
                }else{
                    NSLog(@"error --> %@", error);
+                   [[[UIAlertView alloc] initWithTitle:@"Error!"
+                                               message:@"Tu noticia ha podido ser publicada. Por favor, inténtalo más tarde."
+                                              delegate:nil
+                                     cancelButtonTitle:@"OK"
+                                     otherButtonTitles: nil] show];
                }
                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                [self hideLoadingView];

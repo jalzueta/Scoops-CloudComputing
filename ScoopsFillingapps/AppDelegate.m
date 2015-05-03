@@ -80,6 +80,7 @@
                                                                              categories:nil];
     
     [application registerUserNotificationSettings:settings];
+    [application registerForRemoteNotifications];
     
 }
 
@@ -87,11 +88,14 @@
     
     MSClient *client = [MSClient clientWithApplicationURL:[NSURL URLWithString:AZUREMOBILESERVICE_ENDPOINT] applicationKey:AZUREMOBILESERVICE_APPKEY];
     
-    [client.push registerNativeWithDeviceToken:deviceToken tags:@[@"Mi etiqueta"] completion:^(NSError *error) {
-        if (error != nil) {
-            NSLog(@"Error registering for notifications: %@", error);
-        }
-    }];
+    [[NSUserDefaults standardUserDefaults]setObject:deviceToken
+                                             forKey:@"deviceToken"];
+    
+//    [client.push registerNativeWithDeviceToken:deviceToken tags:@[@"Mi etiqueta"] completion:^(NSError *error) {
+//        if (error != nil) {
+//            NSLog(@"Error registering for notifications: %@", error);
+//        }
+//    }];
     
 }
 

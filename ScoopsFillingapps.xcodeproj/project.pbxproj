@@ -567,6 +567,7 @@
 					"$(PROJECT_DIR)/ScoopsFillingapps",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b485b10f-9b28-45c7-83b6-0044dec6a4d4";
 			};
 			name = Debug;
 		};
